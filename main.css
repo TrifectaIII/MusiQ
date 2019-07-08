@@ -1,9 +1,55 @@
-* {
-    text-align: center;
+*, *:before, *:after {
+    /* Required to make Choices element look right */
     box-sizing: border-box;
+    max-width: 100%;
+}
+
+.container {
+    max-width: 1500px;
+    position:relative;
+    min-height: 98vh;
+    padding:0 0px;
+}
+
+.column, .columns {
+    border:1px solid black;
+    border-radius: 10px;
+    padding:10px;
+    margin-top:10px;
+}
+
+hr {
+    border-color:black;
+}
+
+.game-column {
+    text-align: center;
+}
+
+.players {
+    width:60%;
+    text-align: left;
+    margin:auto;
 }
 
 .quiz-button {
-    width:80%;
+    width:60%;
     max-width: 100%;
+}
+
+.main {
+    padding-bottom:7rem; /* Footer height */
+}
+
+.footer {
+    text-align: center;
+    width:100%;
+    position: absolute;
+    bottom:0;
+    height: 7rem; /* Footer height */
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+}
+
+a {
+    color:rgb(16, 67, 221);
 }
