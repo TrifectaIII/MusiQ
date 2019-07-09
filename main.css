@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+
 *, *:before, *:after {
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
     max-width: 100%;
+}
+
+body {
+    font-family:'Righteous', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .container {
@@ -25,13 +31,8 @@
 
 .quiz-button {
     width:60%;
-    max-width: 100%;
-}
-
-.players {
-    width:60%;
-    text-align: left;
-    margin:auto;
+    font-size:larger;
+    /* visibility: hidden;*/
 }
 
 .main {
@@ -51,6 +52,6 @@ a {
     color:rgb(16, 67, 221);
 }
 
-#open_settings_button {
+.open-modal {
     font-size: 150%;
 }

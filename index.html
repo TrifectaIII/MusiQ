@@ -12,9 +12,11 @@
     <link href="resources/skeleton.css" rel="stylesheet" type="text/css" />
 
     <!-- Load css files -->
-    <link href="main.css" rel="stylesheet" type="text/css" />
-    <link href="modal.css" rel="stylesheet" type="text/css" />
+    <link href="modal.css" rel="stylesheet" type="text/css"/>
+    <link href="players.css" rel="stylesheet" type="text/css"/>
+    <link href="main.css" rel="stylesheet" type="text/css"/>
   </head>
+
   <body>
 
     <!-- MODAL WINDOW -->
@@ -68,6 +70,8 @@
     <div class='container'>
       <div class='main'>
         <div class='row'>
+
+          <!-- MULTIPLAYER COLUMN -->
           <div class='three columns multiplayer-column'>
             <h3><nobr>&#x1F389; Multiplayer</nobr></h3>
             <hr class='primary-rule'></hr>
@@ -77,6 +81,8 @@
               voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
               non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </div>
+
+          <!-- GAME COLUMN -->
           <div class='six columns game-column'>
             <h2>Game</h2>
             <h4 class='score player1-score'>Score: 15</h4>
@@ -86,12 +92,17 @@
             <button class='quiz-button button-primary'>Option 4</button>
             <hr class='primary-rule'></hr>
             <div class='row players'>
-              <p>Player 1: <span>15</span></p>
-              <p>Player 2: <span>15</span></p>
-              <p>Player 3: <span>15</span></p>
-              <p>Player 4: <span>15</span></p>
+              <div class='player no-player' style="background-color:#F4ADC6;"><span class='player-name'>Empty</span><span class='player-score'>-</span></div>
+              <div class='player no-player' style="background-color:#FDFD95;"><span class='player-name'>Empty</span><span class='player-score'>-</span></div>
+              <div class='player no-player' style="background-color:#7799CC;"><span class='player-name'>Empty</span><span class='player-score'>-</span></div>
+              <div class='player no-player' style="background-color:#F69CC4;"><span class='player-name'>Empty</span><span class='player-score'>-</span></div>
+              <!-- add/remove player buttons for testing -->
+              <button class='add-players'>Add Players</button>
+              <button class='remove-players'>Remove Players</button>
             </div>
           </div>
+
+          <!-- LEADERBOARD COLUMN -->
           <div class='three columns leaderboard-column'>
             <h3><nobr>&#x1F3C6; Leaderboards</nobr></h3>
             <hr class='primary-rule'></hr>
@@ -104,7 +115,7 @@
         </div>
       </div>
       <div class='footer row'>
-        <button id='open_settings_button' class ='open-modal'>&#9881;</button>
+        <button class ='open-modal'>&#9881;</button>
         <br>
         <span>Made by | 
           <a href="https://github.com/TrifectaIII">@TrifectaIII</a> | 
@@ -122,6 +133,7 @@
 
     <!-- load js files -->
     <script src="modal.js"></script>
+    <script src="players.js"></script>
     <script src="main.js"></script>
   </body>
 </html>

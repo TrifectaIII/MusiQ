@@ -1,0 +1,26 @@
+.players {
+    width:60%;
+    margin:auto;
+}
+
+.player {
+    width:100%;
+    border:1px solid black;
+    border-radius:4px;
+    margin-top:1rem;
+    margin-bottom:1rem;
+    text-align: left;
+    padding:10px;
+    font-size: larger;
+}
+
+.player.no-player {
+    /* overwrite inline html colors */
+    background-color:rgb(170, 170, 170)!important;
+}
+
+.player-score {
+    float:right;
+    text-align: right;
+    font-weight: bolder;
+}
