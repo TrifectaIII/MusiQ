@@ -12,13 +12,12 @@
 }
 
 .column, .columns {
-    border:1px solid black;
     border-radius: 10px;
     padding:10px;
     margin-top:10px;
 }
 
-hr {
+.primary-rule {
     border-color:black;
 }
 
@@ -38,7 +37,7 @@ hr {
 }
 
 .main {
-    padding-bottom:7rem; /* Footer height */
+    padding-bottom:12rem; /* Footer height */
 }
 
 .footer {
@@ -46,7 +45,7 @@ hr {
     width:100%;
     position: absolute;
     bottom:0;
-    height: 7rem; /* Footer height */
+    height: 12rem; /* Footer height */
     font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 }
 
