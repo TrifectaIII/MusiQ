@@ -30,6 +30,7 @@
     /* overwrite inline html colors */
     background-color:rgb(170, 170, 170)!important;
     border-color:rgb(170, 170, 170);
+    color:rgb(100, 100, 100);
 }
 
 .player.wait-player.started {
