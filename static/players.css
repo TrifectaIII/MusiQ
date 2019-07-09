@@ -18,6 +18,14 @@
     transition: background-color 0.3s ease;
 }
 
+.player.right {
+    background-color:rgb(67, 255, 92)!important;
+}
+
+.player.wrong {
+    background-color:rgb(255, 67, 67)!important;
+}
+
 .player.wait-player {
     /* overwrite inline html colors */
     background-color:rgb(170, 170, 170)!important;
