@@ -12,6 +12,10 @@
     text-align: left;
     padding:10px;
     font-size: larger;
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .player.no-player {

@@ -33,6 +33,10 @@ body {
     width:60%;
     font-size:larger;
     /* visibility: hidden;*/
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .main {
