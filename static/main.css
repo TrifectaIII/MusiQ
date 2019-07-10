@@ -5,8 +5,18 @@
     max-width: 100%;
 }
 
+button {
+    background-color: white;
+}
+
 body {
     font-family:'Righteous', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color:#2d2d2d;
+    color:white;
+}
+
+hr.primary-rule {
+    border-color:white;
 }
 
 .container {
@@ -43,7 +53,7 @@ body {
 }
 
 a {
-    color:rgb(16, 67, 221);
+    color:#33C3F0;
 }
 
 .open-modal {

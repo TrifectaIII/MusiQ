@@ -10,6 +10,7 @@
     opacity: 0;
     transition: opacity .15s ease-in-out;
     overflow-y: auto;
+    color:#222;
 }
 .modal.modal-open {
     visibility: visible;
