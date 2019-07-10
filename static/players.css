@@ -1,6 +1,12 @@
 .players {
-    width:60%;
+    width:80%;
     margin:auto;
+}
+
+@media (min-width: 550px) {
+    .players {
+        width:60%;
+    }
 }
 
 .player {
