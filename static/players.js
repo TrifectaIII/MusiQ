@@ -57,31 +57,28 @@ players.unJudgePlayers = function () {
     };
 };
 
+players.resetPlayers = function () {
+    players.unJudgePlayers();
+    players.finishPlayers();
+    players.updatePlayers(['','','',''],[0,0,0,0]);
+};
+
 //Buttons to test visuals
 
 var add_players = document.querySelector('.add-players');
-var remove_players = document.querySelector('.remove-players');
 var start_game = document.querySelector('.start-game');
-var end_game = document.querySelector('.end-game');
 var judge_players = document.querySelector('.judge-players');
-var unjudge_players = document.querySelector('.unjudge-players');
+var reset_players = document.querySelector('.reset-players');
 
 add_players.addEventListener('click', function () {
     players.updatePlayers(['Derek','David','Dennis',''],
                   [12,14,16,18]);
 });
 
-remove_players.addEventListener('click', function () {
-    players.updatePlayers(['','','',''],
-                  [0,0,0,0]);
-});
-
 start_game.addEventListener('click', players.startPlayers);
-
-end_game.addEventListener('click', players.finishPlayers);
 
 judge_players.addEventListener('click', function () {
     players.judgePlayers([true,false,true,false]);
 });
 
-unjudge_players.addEventListener('click', players.unJudgePlayers);
+reset_players.addEventListener('click', players.resetPlayers);

@@ -1,3 +1,11 @@
+.quiz-prompt {
+    font-size:large;
+}
+
+.quiz-prompt.hidden {
+    visibility: hidden;
+}
+
 .quiz-button.button-primary,
 .quiz-button.button-primary:focus {
     width:80%;
@@ -29,6 +37,12 @@
     color:#222;
     border-color:white;
     background-color: #33C3F0;
+}
+
+.quiz-button.button-primary.not-chosen {
+    color:#222;
+    border-color:rgb(43, 159, 194);
+    background-color: rgb(43, 159, 194);
 }
 
 .quiz-button.button-primary.hidden {
