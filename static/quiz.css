@@ -2,24 +2,20 @@
 .quiz-button.button-primary:focus {
     width:80%;
     font-size:larger;
-    -webkit-transition: background-color 0.3s ease;
-    -moz-transition: background-color 0.3s ease;
-    -o-transition: background-color 0.3s ease;
-    transition: background-color 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    -webkit-transition-property:background-color border-color color;
+    -moz-transition-property:background-color border-color color;
+    -o-transition-property:background-color border-color color;
+    transition-property:background-color border-color color;
     margin-top:0.5rem;
     margin-bottom:0.5rem;
-    border-width: 2px;
+    border-width: 3px;
     color:#222;
-    /* background-color: #33C3F0;
-    border-color: #33C3F0; */
-}
-
-.quiz-button.button-primary:hover {
-    /* color:black; */
-    border-width:2px;
-    color:#222;
-    border-color:black;
     background-color: #33C3F0;
+    border-color: #33C3F0;
 }
 
 @media (min-width: 550px) {
@@ -29,14 +25,29 @@
     }
 }
 
+.quiz-button.button-primary:hover {
+    color:#222;
+    border-color:white;
+    background-color: #33C3F0;
+}
+
 .quiz-button.button-primary.hidden {
     visibility: hidden;
 }
 
 .quiz-button.button-primary.right {
     background-color:rgb(67, 255, 92);
+    border-color:rgb(67, 255, 92);
+    color:#222;
 }
 
 .quiz-button.button-primary.wrong {
     background-color:rgb(255, 67, 67);
+    border-color:rgb(255, 67, 67);
+    color:#222;
+}
+
+.quiz-button.button-primary.chosen {
+    border-color:white;
+    color:white;
 }
