@@ -51,6 +51,8 @@ hr.primary-rule {
 
 .highscore-list {
     text-align: left;
+    margin:auto;
+    width:80%;
 }
 
 .footer {
