@@ -19,7 +19,7 @@ quiz.askFor = function (askfor) {
             quiz.quiz_prompt.innerHTML = 'Identify the Song Title:';
             break;
         default:
-            quiz.quiz_prompt.innerHTML = 'PROMPT ERROR';
+            quiz.quiz_prompt.innerHTML = 'CANNOT ASK FOR THAT';
     };
 };
 
@@ -107,9 +107,13 @@ quiz.resetQuiz = function () {
 // Button onclicks for choosing 
 for (let i = 0; i < quiz.quiz_buttons.length; i++) {
     let button = quiz.quiz_buttons[i];
+
+    //setup onclick
     button.addEventListener('click', function () {
         //make sure buttons aren't hidden, and nothing chosen yet
         if (!this.classList.contains('chosen') && !this.classList.contains('not-chosen') && !this.classList.contains('hidden')) {
+
+            //chose clicked button, then mark all others as not chosen
             this.classList.add('chosen');
             for (let j = 0; j < quiz.quiz_buttons.length; j++) {
                 if (quiz.quiz_buttons[j] != this) {

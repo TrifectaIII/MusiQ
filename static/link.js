@@ -1,10 +1,12 @@
 var multiplayer_link = document.querySelector('.multiplayer-link');
 var copy_link = document.querySelector('.copy-link');
-var set_link_value = '';
+
+//variable to hold correct value and reset if user changes
+var link_value = '';
 
 //sets multiplayer link for user to copy
-var setLink = function (link) {
-    set_link_value = link;
+var setMultiLink = function (link) {
+    link_value = link;
     multiplayer_link.value = link;
 };
 
@@ -16,7 +18,7 @@ copy_link.addEventListener('click', function () {
 
 //always reset link input if user changes it
 multiplayer_link.addEventListener('input', (evt) => {
-    multiplayer_link.value = set_link_value;
+    multiplayer_link.value = link_value;
 });
 
-setLink('link goes here');
+setMultiLink('link goes here');
