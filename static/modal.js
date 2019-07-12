@@ -26,3 +26,21 @@ inner.addEventListener('click', function() {
 content.addEventListener('click', function(e) {
     e.stopPropagation();
 });
+
+//Settings are part of modal window
+
+var toggle_visualizer = document.querySelector('.toggle-visualizer');
+
+toggle_visualizer.addEventListener('click', function () {
+    if (toggle_visualizer.classList.contains('on')) {
+        //turn off in on
+        toggle_visualizer.classList.remove('on');
+        toggle_visualizer.classList.add('off');
+        toggle_visualizer.innerHTML = 'OFF';
+    } else {
+        //turn on if off
+        toggle_visualizer.classList.remove('off');
+        toggle_visualizer.classList.add('on');
+        toggle_visualizer.innerHTML = 'ON';
+    };
+});
