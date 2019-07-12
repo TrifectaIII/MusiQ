@@ -12,9 +12,10 @@
     <link href="/static/skeleton.css" rel="stylesheet" type="text/css" />
 
     <!-- Load css files -->
-    <link href="/static/modal.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/link.css" rel="stylesheet" type="text/css"/>
     <link href="/static/quiz.css" rel="stylesheet" type="text/css"/>
     <link href="/static/players.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/modal.css" rel="stylesheet" type="text/css"/>
     <link href="/static/main.css" rel="stylesheet" type="text/css"/>
   </head>
 
@@ -76,11 +77,11 @@
           <div class='three columns multiplayer-column'>
             <h3><nobr>&#x1F389; Multiplayer</nobr></h3>
             <hr class='primary-rule'></hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-              ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
-              non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class='link-area'>
+              <p>Play with your friends! The link below will allow others to join your game.</p>
+              <input type='text' class='multiplayer-link'>
+              <button class='copy-link'>Copy Link</button>
+            </div>
           </div>
 
           <!-- GAME COLUMN -->
@@ -157,9 +158,10 @@
     </div>
 
     <!-- load js files -->
-    <script src="/static/modal.js"></script>
+    <script src="/static/link.js"></script>
     <script src="/static/quiz.js"></script>
     <script src="/static/players.js"></script>
+    <script src="/static/modal.js"></script>
     <script src="/static/main.js"></script>
   </body>
 </html>
