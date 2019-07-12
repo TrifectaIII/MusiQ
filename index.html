@@ -16,25 +16,20 @@
     <link href="/static/quiz.css" rel="stylesheet" type="text/css"/>
     <link href="/static/players.css" rel="stylesheet" type="text/css"/>
     <link href="/static/modal.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/extras.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/entry.css" rel="stylesheet" type="text/css"/>
     <link href="/static/main.css" rel="stylesheet" type="text/css"/>
   </head>
 
   <body>
 
-    <!-- MODAL WINDOW -->
-    <div class="modal">
-      <div class="modal-inner">
-        <div class="modal-content">
-          <div class="modal-close-icon">
-            <a href="javascript:void(0)" class="close-modal"><i class="fa fa-times" aria-hidden="true"></i></a>
-          </div>
+    <!-- MODAL EXTRAS WINDOW -->
+    <div class="modal extras">
+      <div class="modal-inner extras">
+        <div class="modal-content extras">
 
-          <!-- Contents of Modal Window -->
+          <!-- Contents of Modal Extras Window -->
           <div class="modal-content-inner">
-            <!-- <div class='row'>
-              <h2>EXTRA</h2>
-              <hr class="modal-buttons-seperator">
-            </div> -->
 
             <!-- INSTRUCTIONS -->
             <div class='row'>
@@ -61,7 +56,31 @@
             <!-- Close Modal Button -->
             <hr class="modal-buttons-seperator">
             <div class="modal-buttons">
-              <button class="button close-modal button-primary">Close</button>
+              <button class="button close-modal extras button-primary">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+	  </div>
+
+    <!-- MODAL INPUT WINDOW -->
+    <div class="modal modal entry">
+      <div class="modal-inner entry">
+        <div class="modal-content entry">
+
+          <!-- Contents of Modal Extras Window -->
+          <div class="modal-content-inner">
+
+            <!-- INSTRUCTIONS -->
+            <div class='row'>
+              <h5 class='modal-entry-instruct'>Please enter your name:</h5>
+              <input class='modal-entry-input' type='text' maxlength="8">
+            </div>
+
+            <!-- Close Modal Button -->
+            <hr class="modal-buttons-seperator">
+            <div class="modal-buttons">
+              <button class="button close-modal entry button-primary">Submit</button>
             </div>
           </div>
         </div>
@@ -82,6 +101,7 @@
               <input type='text' class='multiplayer-link'>
               <button class='copy-link'>Copy Link</button>
             </div>
+            <button class='open-modal entry'>Open Entry Dialog</button>
           </div>
 
           <!-- GAME COLUMN -->
@@ -126,7 +146,7 @@
           <div class='three columns highscore-column'>
             <h3><nobr>&#x1F3C6; High Scores</nobr></h3>
             <hr class='primary-rule'></hr>
-            <ol>
+            <ol class='highscore-list'>
               <li>Bob - 10</li>
               <li>Bill - 8</li>
               <li>Ben - 2</li>
@@ -141,7 +161,7 @@
         </div>
       </div>
       <div class='footer row'>
-        <button class ='open-modal'>&#9881;</button>
+        <button class ='open-modal extras'>&#9881;</button>
         <br>
         <span>Made by | 
           <a href="https://github.com/TrifectaIII">@TrifectaIII</a> | 
@@ -161,7 +181,8 @@
     <script src="/static/link.js"></script>
     <script src="/static/quiz.js"></script>
     <script src="/static/players.js"></script>
-    <script src="/static/modal.js"></script>
+    <script src="/static/extras.js"></script>
+    <script src="/static/entry.js"></script>
     <script src="/static/main.js"></script>
   </body>
 </html>

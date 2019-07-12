@@ -1,0 +1,28 @@
+.open-modal.extras {
+    font-size: 150%;
+}
+
+.toggle-visualizer {
+    border:2px solid #222;
+    font-size:large;
+    width:60%;
+}
+
+@media (min-width: 550px) {
+    .toggle-visualizer {
+        width:30%;
+    }
+}
+
+.toggle-visualizer:hover,
+.toggle-visualizer:focus {
+    border:2px solid #222;
+}
+
+.toggle-visualizer.on {
+    background-color:rgb(67, 255, 92);
+}
+
+.toggle-visualizer.off {
+    background-color:rgb(255, 67, 67);
+}

@@ -22,6 +22,7 @@ body {
     font-family:'Righteous', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color:#2d2d2d;
     color:white;
+    text-align: center;
 }
 
 hr.primary-rule {
@@ -44,16 +45,15 @@ hr.primary-rule {
     border-color:black;
 }
 
-.game-column {
-    text-align: center;
-}
-
 .main {
     padding-bottom:11.5rem; /* Footer height */
 }
 
+.highscore-list {
+    text-align: left;
+}
+
 .footer {
-    text-align: center;
     width:100%;
     position: absolute;
     bottom:0;

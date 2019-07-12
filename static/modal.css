@@ -12,12 +12,14 @@
     overflow-y: auto;
     color:#222;
 }
+
 .modal.modal-open {
     visibility: visible;
     backface-visibility: visible;
     opacity: 1;
     z-index: 2;
 }
+
 .modal .modal-inner {
     position: relative;
     height: 100%;
@@ -25,6 +27,7 @@
     flex-direction: column;
     align-items: center;
 }
+
 .modal .modal-inner .modal-content {
     background-color: white;
     max-width: 55em; /* increase to incrrase max width of whole modal window*/
@@ -34,68 +37,40 @@
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.35);
     border-radius: 4px;
 }
+
 .modal .modal-inner .modal-content .modal-close-icon {
     position: absolute;
     right: 1.5em;
 }
+
 /* .modal .modal-inner .modal-content .modal-content-inner {
     padding-right: 2em;
 } */
+
 .modal .modal-inner .modal-content .modal-content-inner h1, .modal .modal-inner .modal-content .modal-content-inner h2, .modal .modal-inner .modal-content .modal-content-inner h3, .modal .modal-inner .modal-content .modal-content-inner h4, .modal .modal-inner .modal-content .modal-content-inner h5, .modal .modal-inner .modal-content .modal-content-inner h6 {
     margin-bottom: 0.25em;
 }
+
 .modal .modal-inner .modal-content .modal-content-inner p {
     margin-bottom: 1em;
 }
+
 .modal .modal-inner .modal-content .modal-buttons-seperator {
     margin: 1.5em 0;
     margin-top: 0;
 }
+
 .modal .modal-inner .modal-content .modal-buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
+
 .modal .modal-inner .modal-content .modal-buttons button {
     margin-left: 1em;
 }
+
 .modal .modal-inner .modal-content .modal-buttons button:first-child {
     margin-left: 0;
-}
-.infocol {
-    text-align: left;
-}
-
-.open-modal {
-    font-size: 150%;
-}
-
-.settings-area {
-    text-align: center;
-}
-
-.toggle-visualizer {
-    border:2px solid #222;
-    font-size:large;
-    width:60%;
-}
-
-@media (min-width: 550px) {
-    .toggle-visualizer {
-        width:30%;
-    }
-}
-
-.toggle-visualizer:hover,
-.toggle-visualizer:focus {
-    border:2px solid #222;
-}
-
-.toggle-visualizer.on {
-    background-color:rgb(67, 255, 92);
-}
-
-.toggle-visualizer.off {
-    background-color:rgb(255, 67, 67);
 }

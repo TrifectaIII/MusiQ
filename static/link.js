@@ -17,7 +17,7 @@ copy_link.addEventListener('click', function () {
 });
 
 //always reset link input if user changes it
-multiplayer_link.addEventListener('input', (evt) => {
+multiplayer_link.addEventListener('input', function () {
     multiplayer_link.value = link_value;
 });
 
