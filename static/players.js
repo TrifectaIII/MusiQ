@@ -49,16 +49,17 @@ players.judgePlayers = function (bool_list) {
     };
 };
 
-//unJudge all players to revert to default colors
-players.unJudgePlayers = function () {
+//unjudge all players to revert to default colors
+players.unjudgePlayers = function () {
     for (let i = 0; i < players.playerbars.length; i++) {
         players.playerbars[i].classList.remove('right');
         players.playerbars[i].classList.remove('wrong');
     };
 };
 
+// unjudge, finish and revert all to empty
 players.resetPlayers = function () {
-    players.unJudgePlayers();
+    players.unjudgePlayers();
     players.finishPlayers();
     players.updatePlayers(['','','',''],[0,0,0,0]);
 };
