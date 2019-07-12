@@ -79,6 +79,10 @@ quiz.judgeQuiz = function (bool_list) {
         } else {
             quiz.quiz_buttons[i].classList.add('wrong');
         };
+        //if judged when no choice was made, disable choice
+        if (quiz.getChoice() === undefined) {
+            quiz.quiz_buttons[i].classList.add('not-chosen');
+        };
     };
 }
 
