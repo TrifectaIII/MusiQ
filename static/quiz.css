@@ -1,11 +1,12 @@
 .quiz-prompt {
-    font-size:large;
+    font-size:x-large;
 }
 
 .quiz-button.button-primary,
 .quiz-button.button-primary:focus {
     width:80%;
-    font-size:larger;
+    padding:4px 0px;
+    font-size:x-large;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -18,8 +19,8 @@
     color:#222;
     background-color: #33C3F0;
     border-color: #33C3F0;
-    line-height: 45px; /*should match height*/
-    height:45px;
+    height:auto;
+    line-height:normal;
 }
 
 @media (min-width: 550px) {
@@ -61,11 +62,9 @@
 }
 
 .quiz-prompt.hidden {
-    /* visibility: hidden; */
     opacity: 0;
 }
 
 .quiz-button.button-primary.hidden {
-    /* visibility: hidden; */
     opacity: 0;
 }

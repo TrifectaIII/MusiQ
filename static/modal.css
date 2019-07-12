@@ -23,7 +23,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 }
 .modal .modal-inner .modal-content {

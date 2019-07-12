@@ -18,8 +18,8 @@
     margin-top:1rem;
     margin-bottom:1rem;
     text-align: left;
-    padding:5px;
-    font-size: larger;
+    padding:0px 10px;
+    font-size: x-large;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -74,5 +74,4 @@
 .player-score {
     float:right;
     text-align: right;
-    font-weight: bolder;
 }

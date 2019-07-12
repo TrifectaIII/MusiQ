@@ -43,7 +43,7 @@ hr.primary-rule {
 }
 
 .main {
-    padding-bottom:12rem; /* Footer height */
+    padding-bottom:11.5rem; /* Footer height */
 }
 
 .footer {
@@ -51,7 +51,7 @@ hr.primary-rule {
     width:100%;
     position: absolute;
     bottom:0;
-    height: 12rem; /* Footer height */
+    height: 11.5rem; /* Footer height */
     font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 }
 

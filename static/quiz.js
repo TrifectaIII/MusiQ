@@ -32,7 +32,7 @@ quiz.setChoices = function (choice_list) {
 
 //remove all choices, leave buttons blank
 quiz.zeroChoices = function () {
-    quiz.setChoices(['','','','']);
+    quiz.setChoices(['.','.','.','.']);
 };
 
 //returns string of the currently selected choice, or undefined if nothing picked
