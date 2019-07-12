@@ -63,6 +63,8 @@ players.resetPlayers = function () {
     players.updatePlayers(['','','',''],[0,0,0,0]);
 };
 
+players.resetPlayers();
+
 //Buttons to test visuals
 
 var add_players = document.querySelector('.add-players');
