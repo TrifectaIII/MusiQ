@@ -1,32 +1,32 @@
 var quiz = {}
 
-quiz.quiz_score = document.querySelector('.quiz-score');
-quiz.quiz_prompt = document.querySelector('.quiz-prompt');
-quiz.quiz_buttons = document.querySelectorAll('.quiz-button');
+quiz.score = document.querySelector('.quiz-score');
+quiz.prompt = document.querySelector('.quiz-prompt');
+quiz.buttons = document.querySelectorAll('.quiz-button');
 
 //sets the users score to num or string
 quiz.setScore = function (score) {
-    quiz.quiz_score.innerHTML = String(score);
+    quiz.score.innerHTML = String(score);
 };
 
 //sets prompt for quiz question based on what we want to ask for (artist, song (title), etc)
 quiz.askFor = function (askfor) {
     switch(askfor){
         case 'artist':
-            quiz.quiz_prompt.innerHTML = 'Identify the Artist:';
+            quiz.prompt.innerHTML = 'Identify the Artist:';
             break;
         case 'song':
-            quiz.quiz_prompt.innerHTML = 'Identify the Song Title:';
+            quiz.prompt.innerHTML = 'Identify the Song Title:';
             break;
         default:
-            quiz.quiz_prompt.innerHTML = 'CANNOT ASK FOR THAT';
+            quiz.prompt.innerHTML = 'CANNOT ASK FOR THAT';
     };
 };
 
 //takes list of choice strings and displays on buttons
 quiz.setChoices = function (choice_list) {
-    for (let i = 0; i <quiz.quiz_buttons.length; i++) {
-        quiz.quiz_buttons[i].innerHTML = choice_list[i];
+    for (let i = 0; i <quiz.buttons.length; i++) {
+        quiz.buttons[i].innerHTML = choice_list[i];
     };
 };
 
@@ -37,9 +37,9 @@ quiz.zeroChoices = function () {
 
 //returns string of the currently selected choice, or undefined if nothing picked
 quiz.getChoice = function () {
-    for (let i = 0; i <quiz.quiz_buttons.length; i++) {
-        if (quiz.quiz_buttons[i].classList.contains('chosen')) {
-            return quiz.quiz_buttons[i].innerHTML;
+    for (let i = 0; i <quiz.buttons.length; i++) {
+        if (quiz.buttons[i].classList.contains('chosen')) {
+            return quiz.buttons[i].innerHTML;
         };
     };
     return undefined;
@@ -47,8 +47,8 @@ quiz.getChoice = function () {
 
 //returns index of the currently selected choice, or undefined if nothing picked
 quiz.getChoiceIndex = function () {
-    for (let i = 0; i <quiz.quiz_buttons.length; i++) {
-        if (quiz.quiz_buttons[i].classList.contains('chosen')) {
+    for (let i = 0; i <quiz.buttons.length; i++) {
+        if (quiz.buttons[i].classList.contains('chosen')) {
             return i;
         };
     };
@@ -57,40 +57,40 @@ quiz.getChoiceIndex = function () {
 
 //turns transparency of quiz to 1
 quiz.hideQuiz = function () {
-    quiz.quiz_prompt.classList.add('hidden');
-    for (let i = 0; i <quiz.quiz_buttons.length; i++) {
-        quiz.quiz_buttons[i].classList.add('hidden');
+    quiz.prompt.classList.add('hidden');
+    for (let i = 0; i <quiz.buttons.length; i++) {
+        quiz.buttons[i].classList.add('hidden');
     };
 };
 
 //turns transparency of quiz to 0
 quiz.showQuiz = function () {
-    quiz.quiz_prompt.classList.remove('hidden');
-    for (let i = 0; i < quiz.quiz_buttons.length; i++) {
-        quiz.quiz_buttons[i].classList.remove('hidden');
+    quiz.prompt.classList.remove('hidden');
+    for (let i = 0; i < quiz.buttons.length; i++) {
+        quiz.buttons[i].classList.remove('hidden');
     };
 };
 
 //judges the options given as right or wrong after descision is made
 quiz.judgeQuiz = function (bool_list) {
-    for (let i = 0; i < quiz.quiz_buttons.length; i++) {
+    for (let i = 0; i < quiz.buttons.length; i++) {
         if (bool_list[i]) {
-            quiz.quiz_buttons[i].classList.add('right');
+            quiz.buttons[i].classList.add('right');
         } else {
-            quiz.quiz_buttons[i].classList.add('wrong');
+            quiz.buttons[i].classList.add('wrong');
         };
         //if judged when no choice was made, disable choice
         if (quiz.getChoice() === undefined) {
-            quiz.quiz_buttons[i].classList.add('not-chosen');
+            quiz.buttons[i].classList.add('not-chosen');
         };
     };
 }
 
 //removes judging from buttons
 quiz.unJudgeQuiz = function () {
-    for (let i = 0; i < quiz.quiz_buttons.length; i++) {
-        quiz.quiz_buttons[i].classList.remove('right');
-        quiz.quiz_buttons[i].classList.remove('wrong');
+    for (let i = 0; i < quiz.buttons.length; i++) {
+        quiz.buttons[i].classList.remove('right');
+        quiz.buttons[i].classList.remove('wrong');
     };
 };
 
@@ -98,15 +98,15 @@ quiz.unJudgeQuiz = function () {
 quiz.resetQuiz = function () {
     quiz.zeroChoices();
     quiz.unJudgeQuiz();
-    for (let i = 0; i < quiz.quiz_buttons.length; i++) {
-        quiz.quiz_buttons[i].classList.remove('chosen');
-        quiz.quiz_buttons[i].classList.remove('not-chosen');
+    for (let i = 0; i < quiz.buttons.length; i++) {
+        quiz.buttons[i].classList.remove('chosen');
+        quiz.buttons[i].classList.remove('not-chosen');
     };
 };
 
 // Button onclicks for choosing 
-for (let i = 0; i < quiz.quiz_buttons.length; i++) {
-    let button = quiz.quiz_buttons[i];
+for (let i = 0; i < quiz.buttons.length; i++) {
+    let button = quiz.buttons[i];
 
     //setup onclick
     button.addEventListener('click', function () {
@@ -115,9 +115,9 @@ for (let i = 0; i < quiz.quiz_buttons.length; i++) {
 
             //chose clicked button, then mark all others as not chosen
             this.classList.add('chosen');
-            for (let j = 0; j < quiz.quiz_buttons.length; j++) {
-                if (quiz.quiz_buttons[j] != this) {
-                    quiz.quiz_buttons[j].classList.add('not-chosen');
+            for (let j = 0; j < quiz.buttons.length; j++) {
+                if (quiz.buttons[j] != this) {
+                    quiz.buttons[j].classList.add('not-chosen');
                 };
             };
         };

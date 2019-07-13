@@ -1,24 +1,26 @@
-var multiplayer_link = document.querySelector('.multiplayer-link');
-var copy_link = document.querySelector('.copy-link');
+var link = {};
+
+link.multiplayer_link = document.querySelector('.multiplayer-link');
+link.copy_link = document.querySelector('.copy-link');
 
 //variable to hold correct value and reset if user changes
-var link_value = '';
+link.link_value = '';
 
 //sets multiplayer link for user to copy
-var setMultiLink = function (link) {
-    link_value = link;
-    multiplayer_link.value = link;
+link.setLink = function (newlink) {
+    link.link_value = newlink;
+    link.multiplayer_link.value = newlink;
 };
 
 // button to copy link automatically
-copy_link.addEventListener('click', function () {
-    multiplayer_link.select();
+link.copy_link.addEventListener('click', function () {
+    link.multiplayer_link.select();
     document.execCommand("copy");
 });
 
 //always reset link input if user changes it
-multiplayer_link.addEventListener('input', function () {
-    multiplayer_link.value = link_value;
+link.multiplayer_link.addEventListener('input', function () {
+    link.multiplayer_link.value = link.link_value;
 });
 
-setMultiLink('link goes here');
+link.setLink('link goes here');

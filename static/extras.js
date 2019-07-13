@@ -2,29 +2,29 @@
 
 var extras = {};
 
-extras.modal_extras = document.querySelector('.modal.extras');
-extras.closeButton_extras = document.querySelector('.close-modal.extras');
-extras.openButton_extras = document.querySelector('.open-modal.extras');
-extras.inner_extras = document.querySelector('.modal-inner.extras');
-extras.content_extras = document.querySelector('.modal-content.extras');
+extras.modal = document.querySelector('.modal.extras');
+extras.close = document.querySelector('.close-modal.extras');
+extras.open = document.querySelector('.open-modal.extras');
+extras.inner = document.querySelector('.modal-inner.extras');
+extras.content = document.querySelector('.modal-content.extras');
 
 // set open modal behaviour
-extras.openButton_extras.addEventListener('click', function() {
-    extras.modal_extras.classList.toggle('modal-open');
+extras.open.addEventListener('click', function() {
+    extras.modal.classList.toggle('modal-open');
 });
 
 // set close modal behaviour
-extras.closeButton_extras.addEventListener('click', function() {
-    extras.modal_extras.classList.toggle('modal-open');
+extras.close.addEventListener('click', function() {
+    extras.modal.classList.toggle('modal-open');
 });
 
 // close modal if clicked outside content area
-extras.inner_extras.addEventListener('click', function() {
-    extras.modal_extras.classList.toggle('modal-open');
+extras.inner.addEventListener('click', function() {
+    extras.modal.classList.toggle('modal-open');
 });
 
 // prevent modal inner from closing parent when clicked
-extras.content_extras.addEventListener('click', function(e) {
+extras.content.addEventListener('click', function(e) {
     e.stopPropagation();
 });
 
