@@ -6,7 +6,7 @@
         {
             "label": "python http.server",
             "type": "shell",
-            "command": "C:/replit-music-jam/http_server.bat",
+            "command": "node server.js",
             "group": {
                 "kind": "build",
                 "isDefault": true
