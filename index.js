@@ -1,8 +1,12 @@
 var express = require('express');
 var app = express();
 var serv = require('http').Server(app);
-var io = require('socket.io')(serv,{});
+var io = require('socket.io')(serv);
 var default_port = 8000;
+
+//Start Server
+serv.listen(process.env.PORT || default_port);
+console.log("Server started @ http://localhost:8000/");
 
 //route main page in index
 app.get('/',function(req, res) {
@@ -13,7 +17,6 @@ app.get('/',function(req, res) {
 app.use('/static',express.static(__dirname + '/static'));
 
 
-//Start Server
-serv.listen(process.env.PORT || default_port);
-console.log("Server started @ http://localhost:8000/");
-
+io.sockets.on('connection', function (socket) {
+	console.log('a new user connected. ID: ',socket.id);
+});

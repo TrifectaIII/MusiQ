@@ -6,7 +6,7 @@
         {
             "label": "python http.server",
             "type": "shell",
-            "command": "node server.js",
+            "command": "node index.js",
             "group": {
                 "kind": "build",
                 "isDefault": true
