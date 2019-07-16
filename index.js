@@ -7,6 +7,7 @@ var serv = require('http').Server(app);
 var io = require('socket.io')(serv);
 var non_repl_port = 8000;
 
+
 // HTTP SERVER
 ////////////////////////////////////////////////////////////////////
 
@@ -21,8 +22,12 @@ app.get('/',function(req, res) {
 //Serve static files
 app.use('/static',express.static(__dirname + '/static'));
 
+
 // SOCKET HANDLING
 ////////////////////////////////////////////////////////////////////
+
+//object to hold all rooms
+var rooms = {};
 
 //handle incoming socket connections
 io.sockets.on('connection', function (socket) {
@@ -31,27 +36,52 @@ io.sockets.on('connection', function (socket) {
 	console.log('a new user connected. ID: ',socket.id);
 
 	//place socket in room
-    socket.on('get_room', function (room){
-		console.log(socket.id,'is joining',room);
+    socket.on('get_room', function (get_room){
+		console.log(socket.id,'is joining',get_room);
 		
 		//if no room specified
-        if (room == 'NEW') {
-            let newRoom = Math.floor(Math.random() * 10000).toString();
-            socket.join(newRoom);
+        if (get_room == 'NEW') {
+			let newRoom;
+			let isnew = false;
+			//generate completely new room name
+			while (!isnew) {
+				newRoom = Math.floor(Math.random() * 10000000).toString();
+				isnew = true;
+				for (let room in rooms){
+					if (room == newRoom) {
+						isnew = false;
+					};
+				};
+			};
+			//add room to rooms
+			rooms[newRoom] = newRoom;
+			socket.join(newRoom);
 			socket.emit('set_link', newRoom);
 			
 		//if room specified
         } else {
-            socket.join(room);
-            socket.emit('set_link', +room);
-        }
-        
+			//check if room already exists
+			let isnew = true;
+			for (let room in rooms) {
+				if (room == get_room) {
+					isnew = false;
+				}
+			}
+			//if not, create it
+			if (isnew) {
+				rooms[get_room] = get_room;
+			}
+			socket.join(get_room);
+            socket.emit('set_link', +get_room);
+        };
 	});
 	
 	// for test messages between clients in room
 	socket.on('test-message', function () {
 		for (let room in socket.rooms){
-			io.sockets.in(room).emit('test-message-recieved',socket.id);
-		}
+			if (room != socket.id){
+				io.sockets.in(room).emit('test-message-recieved',socket.id);
+			};
+		};
 	});
 });
