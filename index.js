@@ -1,6 +1,9 @@
 // SETUP
 ////////////////////////////////////////////////////////////////////
 
+//include game.js file
+var game = require(__dirname+'/game.js');
+
 var express = require('express');
 var app = express();
 var serv = require('http').Server(app);
