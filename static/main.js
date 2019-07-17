@@ -37,6 +37,7 @@ socket.on('set_link', function (room_name) {
 //when room is full
 socket.on('cannot_join', function () {
     alert('Cannot Join Game: Room Full');
+    window.location.href = window.location.href.slice(0,url.lastIndexOf('/')+1);
 });
 
 // PLAYERS
