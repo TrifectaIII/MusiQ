@@ -66,6 +66,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/* .testing-button {
+/* comment out to show testing buttons */
+.testing-button {
     display: none;
-} */
+}
