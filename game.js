@@ -37,7 +37,8 @@ function Room (name, io) {
 
         if (joined) {
             //when player successfully joins lobby, setup
-            this.names[spot] = socket.id.toString();
+            // this.names[spot] = socket.id.toString();
+            this.names[spot] = 'Player '+(spot+1).toString();
 
             let self = this;
 
