@@ -5,6 +5,18 @@ function Room (name) {
     this.scores = [0,0,0,0];
     this.started = false;
 
+    //checks if room is empty
+    this.isEmpty = function () {
+        let empty = true;
+        for (let i = 0; i < this.sockets.length; i++){
+            if(!(this.sockets[i] === undefined)) {
+                empty = false;
+            };
+        };
+        return empty;
+    };
+
+    //adds new socket to room
     this.addSocket = function (socket) {
         //add socket only if an empty slot exists and game hasnt started
         let joined = false;
@@ -21,7 +33,7 @@ function Room (name) {
         };
 
         if (joined) {
-            //when player successfully joins lobby
+            //when player successfully joins lobby, setup
             this.names[spot] = socket.id.toString();
 
             let self = this;
@@ -43,6 +55,7 @@ function Room (name) {
         };
     };
 
+    // function which relays gamestate to all clients
     this.updateSockets = function () {
         for (let i = 0; i < this.sockets.length; i++) {
             let socket = this.sockets[i];

@@ -22,6 +22,7 @@ console.log("Server started @ http://localhost:8000/");
 app.get('/',function(req, res) {
 	res.sendFile(__dirname + '/static/index.html');
 });
+
 //Serve static files
 app.use('/static',express.static(__dirname + '/static'));
 
@@ -29,7 +30,7 @@ app.use('/static',express.static(__dirname + '/static'));
 // SOCKET HANDLING
 ////////////////////////////////////////////////////////////////////
 
-//object to hold all rooms
+//object to hold all game.Room objects
 var rooms = {};
 
 //handle incoming socket connections
@@ -39,54 +40,59 @@ io.sockets.on('connection', function (socket) {
 	console.log('a new user connected. ID: ',socket.id);
 
 	//place socket in room
-    socket.on('join_room', function (get_room){
-		console.log(socket.id,'is joining',get_room);
+    socket.on('join_room', function (roomName){
+		console.log(socket.id,'is joining',roomName);
 		
 		//if no room specified
-        if (get_room == 'NEW') {
-			let newRoom;
+        if (roomName == 'NEW') {
+			let newName;
 			let isnew = false;
 			//generate completely new room name
 			while (!isnew) {
-				newRoom = Math.floor(Math.random() * 10000000).toString();
+				newName = Math.floor(Math.random() * 10000000).toString();
 				isnew = true;
 				for (let room in rooms){
-					if (room == newRoom) {
+					if (room == newName) {
 						isnew = false;
 					};
 				};
 			};
 			//add room to rooms
-			rooms[newRoom] = new game.Room(newRoom);
-			// rooms[newRoom] = newRoom;
-			rooms[newRoom].addSocket(socket);
-			// socket.join(newRoom);
-			socket.emit('set_link', newRoom);
+			rooms[newName] = new game.Room(newName);
+
+			//add socket to room
+			rooms[newName].addSocket(socket);
+			socket.emit('set_link', newName);
 			
 		//if room specified
         } else {
 			//check if room already exists
 			let isnew = true;
 			for (let room in rooms) {
-				if (room == get_room) {
+				if (room == roomName) {
 					isnew = false;
 				}
 			}
 			//if not, create it
 			if (isnew) {
-				rooms[get_room] = new game.Room(get_room);
-				// rooms[get_room] = get_room;
+				rooms[roomName] = new game.Room(roomName);
 			}
-			rooms[get_room].addSocket(socket);
-			// socket.join(get_room);
-            socket.emit('set_link', +get_room);
+			//add socket to room
+			rooms[roomName].addSocket(socket);
+            socket.emit('set_link', +roomName);
         };
 	});
 });
 
+//update loop
 setInterval(function () {
 	for (let room in rooms) {
-		gameRoom = rooms[room];
+		let gameRoom = rooms[room];
 		gameRoom.updateSockets();
+
+		// cull empty rooms
+		if (gameRoom.isEmpty()){
+			delete rooms[room];
+		};
 	};
-}, 60);
+}, 60);//this is interval in MS
