@@ -39,7 +39,7 @@ io.sockets.on('connection', function (socket) {
 	console.log('a new user connected. ID: ',socket.id);
 
 	//place socket in room
-    socket.on('get_room', function (get_room){
+    socket.on('join_room', function (get_room){
 		console.log(socket.id,'is joining',get_room);
 		
 		//if no room specified
@@ -57,8 +57,10 @@ io.sockets.on('connection', function (socket) {
 				};
 			};
 			//add room to rooms
-			rooms[newRoom] = newRoom;
-			socket.join(newRoom);
+			rooms[newRoom] = new game.Room(newRoom);
+			// rooms[newRoom] = newRoom;
+			rooms[newRoom].addSocket(socket);
+			// socket.join(newRoom);
 			socket.emit('set_link', newRoom);
 			
 		//if room specified
@@ -72,19 +74,19 @@ io.sockets.on('connection', function (socket) {
 			}
 			//if not, create it
 			if (isnew) {
-				rooms[get_room] = get_room;
+				rooms[get_room] = new game.Room(get_room);
+				// rooms[get_room] = get_room;
 			}
-			socket.join(get_room);
+			rooms[get_room].addSocket(socket);
+			// socket.join(get_room);
             socket.emit('set_link', +get_room);
         };
 	});
-	
-	// for test messages between clients in room
-	socket.on('test-message', function () {
-		for (let room in socket.rooms){
-			if (room != socket.id){
-				io.sockets.in(room).emit('test-message-recieved',socket.id);
-			};
-		};
-	});
 });
+
+setInterval(function () {
+	for (let room in rooms) {
+		gameRoom = rooms[room];
+		gameRoom.updateSockets();
+	};
+}, 60);

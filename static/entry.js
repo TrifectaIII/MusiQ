@@ -15,6 +15,11 @@ entry.input = document.querySelector('.entry-input');
 entry.isClosed = true;
 entry.entered = '';
 
+entry.getEntered = function () {
+    return entry.entered;
+};
+
+//function to prompt user
 entry.askFor = function (askfor) {
     if (!entry.isClosed) {
         console.log('Entry Modal already Open')
@@ -24,13 +29,16 @@ entry.askFor = function (askfor) {
         entry.modal.classList.toggle('modal-open');
         switch (askfor){
             case 'name':
-                entry.prompt.value = 'Enter Your Name:';
+                entry.prompt.innerHTML = 'Enter Your Name:';
                 break;
             default:
-                entry.prompt.value = 'CANNOT ASK FOR THAT';
+                //if no match, simply pass on parameter string
+                entry.prompt.innerHTML = askfor;
         };
     };
 };
+
+entry.acceptEntry = new Event('acceptEntry');
 
 // set close modal behaviour
 entry.close.addEventListener('click', function() {
@@ -40,6 +48,7 @@ entry.close.addEventListener('click', function() {
         entry.isClosed = true;
         entry.input.value = '';
         entry.modal.classList.toggle('modal-open');
+        entry.close.dispatchEvent(entry.acceptEntry);
     };
 });
 
@@ -57,5 +66,5 @@ entry.content.addEventListener('click', function(e) {
 var open_entry = document.querySelector('.open-modal.entry');
 
 open_entry.addEventListener('click', function() {
-    entry.askFor('name1');
+    entry.askFor('name');
 });

@@ -1,6 +1,9 @@
 //setup socket io
 var socket = io();
 
+// ROOMS + NAME
+/////////////////////////////////////////////////////////////////////////////
+
 //Look for Room
 var room;
 var url = window.location.href;
@@ -13,9 +16,15 @@ if (roomIndex == -1){
     room = url.slice(roomIndex+5);
 };
 
-//on connection, ask for room
+//on connection, ask for room, then ask for name
 socket.on('connect',function () {
-    socket.emit('get_room',room);
+    socket.emit('join_room',room);
+    entry.askFor('name');
+    //send name to server
+    entry.close.addEventListener('acceptEntry', function () {
+        let name = entry.getEntered();
+        socket.emit('set_name', name);
+    });
 });
 
 //set multiplayer link once room is created/joined
@@ -25,11 +34,15 @@ socket.on('set_link', function (room_name) {
     history.pushState({},"",url.slice(0,url.lastIndexOf('/')+1)+'?room='+room_name);
 });
 
-
-// code for sending/recieving test messages to/from server
-document.querySelector('.test-message').addEventListener('click', function() {
-    socket.emit('test-message');
+//when room is full
+socket.on('cannot_join', function () {
+    alert('Cannot Join Game: Room Full');
 });
-socket.on('test-message-recieved', function (id) {
-    console.log('test-message-recieved',id);
+
+// PLAYERS
+/////////////////////////////////////////////////////////////////////////////
+
+// updates players
+socket.on('player_info', function (names,scores) {
+    players.updatePlayers(names,scores);
 });

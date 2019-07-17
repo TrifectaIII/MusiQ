@@ -19,7 +19,8 @@ quiz.askFor = function (askfor) {
             quiz.prompt.innerHTML = 'Identify the Song Title:';
             break;
         default:
-            quiz.prompt.innerHTML = 'CANNOT ASK FOR THAT';
+            //if no match, simply pass on parameter string
+            quiz.prompt.innerHTML = askfor;
     };
 };
 
