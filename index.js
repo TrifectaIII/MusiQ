@@ -58,10 +58,10 @@ io.sockets.on('connection', function (socket) {
 				};
 			};
 			//add room to rooms
-			rooms[newName] = new game.Room(newName);
+			rooms[newName] = new game.Room(newName,io);
 
 			//add socket to room
-			rooms[newName].addSocket(socket);
+			rooms[newName].add(socket);
 			socket.emit('set_link', newName);
 			
 		//if room specified
@@ -75,10 +75,10 @@ io.sockets.on('connection', function (socket) {
 			}
 			//if not, create it
 			if (isnew) {
-				rooms[roomName] = new game.Room(roomName);
+				rooms[roomName] = new game.Room(roomName,io);
 			}
 			//add socket to room
-			rooms[roomName].addSocket(socket);
+			rooms[roomName].add(socket);
             socket.emit('set_link', +roomName);
         };
 	});
@@ -88,7 +88,7 @@ io.sockets.on('connection', function (socket) {
 setInterval(function () {
 	for (let room in rooms) {
 		let gameRoom = rooms[room];
-		gameRoom.updateSockets();
+		gameRoom.update();
 
 		// cull empty rooms
 		if (gameRoom.isEmpty()){

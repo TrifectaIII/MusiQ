@@ -1,9 +1,10 @@
-function Room (name) {
+function Room (name, io) {
     this.name = name;
     this.sockets = [undefined,undefined,undefined,undefined];
     this.names = ['','','',''];
     this.scores = [0,0,0,0];
     this.started = false;
+    this.io = io;
 
     //checks if room is empty
     this.isEmpty = function () {
@@ -17,7 +18,7 @@ function Room (name) {
     };
 
     //adds new socket to room
-    this.addSocket = function (socket) {
+    this.add = function (socket) {
         //add socket only if an empty slot exists and game hasnt started
         let joined = false;
         let spot = 0;
@@ -27,6 +28,8 @@ function Room (name) {
                     this.sockets[i] = socket;
                     joined = true;
                     spot = i;
+                    //join socketsio room
+                    socket.join(this.name);
                     break;
                 };
             };
@@ -38,7 +41,7 @@ function Room (name) {
 
             let self = this;
 
-            //wipe player on DC
+            //wipe player slot on Disconnect
             socket.on('disconnect', function () {
                 self.names[spot]  = '';
                 self.scores[spot] = 0;
@@ -55,14 +58,9 @@ function Room (name) {
         };
     };
 
-    // function which relays gamestate to all clients
-    this.updateSockets = function () {
-        for (let i = 0; i < this.sockets.length; i++) {
-            let socket = this.sockets[i];
-            if (!(socket === undefined)) {
-                socket.emit('player_info', this.names, this.scores);
-            };
-        };
+    // function which relays gamestate to all clients in room
+    this.update = function () {
+        this.io.sockets.in(this.name).emit('player_info', this.names, this.scores);
     };
 };
 
