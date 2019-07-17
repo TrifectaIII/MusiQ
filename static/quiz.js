@@ -18,6 +18,9 @@ quiz.askFor = function (askfor) {
         case 'song':
             quiz.prompt.innerHTML = 'Identify the Song Title:';
             break;
+        case 'composer':
+            quiz.prompt.innerHTML = 'Identify the Composer:';
+            break;
         default:
             //if no match, simply pass on parameter string
             quiz.prompt.innerHTML = askfor;
