@@ -49,12 +49,6 @@ hr.primary-rule {
     padding-bottom:11.5rem; /* Footer height */
 }
 
-.highscore-list {
-    text-align: left;
-    margin:auto;
-    width:80%;
-}
-
 .footer {
     width:100%;
     position: absolute;
