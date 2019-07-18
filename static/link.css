@@ -1,8 +1,17 @@
 .multiplayer-link {
     color:black;
-    font-size: large;
+    width:80%;
 }
 
 .link-button {
-    width:100%;
+    width:80%;
+}
+
+@media (min-width: 550px) {
+    .link-button {
+        width:90%;
+    }
+    .multiplayer-link {
+        width:90%;
+    }
 }

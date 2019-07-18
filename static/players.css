@@ -9,6 +9,10 @@
     }
 }
 
+.player-label {
+    font-size: x-large;
+}
+
 .player {
     width:100%;
     border-width:4px;
