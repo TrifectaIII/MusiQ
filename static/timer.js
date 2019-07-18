@@ -18,11 +18,13 @@ timer.bar = new ProgressBar.Line(timer.elem, {
 
 //starts timer without callback
 timer.startTimer = function () {
+    timer.bar.set(0);
     timer.bar.animate(1);
 };
 
 //starts timer with callback function which executes on timer end
 timer.startTimerCallback = function (callback) {
+    timer.bar.set(0);
     timer.bar.animate(1,callback);
 };
 
