@@ -39,8 +39,9 @@ hr.primary-rule {
 .column, .columns {
     padding:10px;
     margin-top:10px;
-    /* background-color:rgba(0, 0, 0, 0.7);
-    border-radius:3rem; */
+    /* comment rest out to remove dark overlay */
+    background-color:rgba(0, 0, 0, 0.7);
+    border-radius:3rem;
 }
 
 .primary-rule {

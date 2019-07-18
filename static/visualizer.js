@@ -26,6 +26,7 @@ var sketch = function(p){
         p.cnv.position(0,0);
         // puts canvas element in the background 
         p.cnv.style('z-index','-1');
+        p.cnv.style('position','fixed');
         
         p.amp = new p5.Amplitude;
         p.fft = new p5.FFT(.5, 1024); //(smoothing, bit range)
