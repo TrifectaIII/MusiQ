@@ -18,6 +18,7 @@
     <link href="/static/modal.css" rel="stylesheet" type="text/css"/>
     <link href="/static/extras.css" rel="stylesheet" type="text/css"/>
     <link href="/static/entry.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/timer.css" rel="stylesheet" type="text/css"/>
     <link href="/static/main.css" rel="stylesheet" type="text/css"/>
 
     <!-- p5 -->
@@ -27,6 +28,9 @@
 
     <!-- socket io -->
     <script src="/socket.io/socket.io.js"></script>
+
+    <!-- progressbar -->
+    <script src="/static/progressbar.min.js"></script>;
   </head>
 
   <body>
@@ -109,6 +113,8 @@
             <button class='testing-button reset-quiz'>Reset Quiz</button>
             <button class='testing-button show-start'>Show Start</button>
             <button class='testing-button hide-start'>Hide Start</button>
+            <button class='testing-button start-timer'>Start Timer</button>
+            <button class='testing-button reset-timer'>Reset Timer</button>
           </div>
 
           <!-- GAME COLUMN -->
@@ -128,7 +134,9 @@
                   <button class='quiz-button button-primary'>Option 4</button>
                 </div>
             </div>
-            <hr class='primary-rule'></hr>
+
+            <!-- <hr class='primary-rule'></hr> -->
+            <div class='timer'></div>
 
             <!-- PLAYER AREA -->
             <div class='player-area'>
@@ -193,6 +201,7 @@
     <script src="/static/players.js"></script>
     <script src="/static/extras.js"></script>
     <script src="/static/entry.js"></script>
+    <script src="/static/timer.js"></script>
     <script src="/static/main.js"></script>
   </body>
 </html>
