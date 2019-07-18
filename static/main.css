@@ -39,6 +39,8 @@ hr.primary-rule {
 .column, .columns {
     padding:10px;
     margin-top:10px;
+    /* background-color:rgba(0, 0, 0, 0.7);
+    border-radius:3rem; */
 }
 
 .primary-rule {
@@ -67,6 +69,6 @@ a:hover {
 }
 
 /* comment out to show testing buttons */
-.testing-button {
+/* .testing-button {
     display: none;
-}
+} */

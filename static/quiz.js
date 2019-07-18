@@ -3,6 +3,7 @@ var quiz = {}
 quiz.score = document.querySelector('.quiz-score');
 quiz.prompt = document.querySelector('.quiz-prompt');
 quiz.buttons = document.querySelectorAll('.quiz-button');
+quiz.start = document.querySelector('.start-button');
 
 //sets the users score to num or string
 quiz.setScore = function (score) {
@@ -59,7 +60,7 @@ quiz.getChoiceIndex = function () {
     return undefined;
 };
 
-//turns transparency of quiz to 1
+//hides quiz
 quiz.hideQuiz = function () {
     quiz.prompt.classList.add('hidden');
     for (let i = 0; i <quiz.buttons.length; i++) {
@@ -67,13 +68,25 @@ quiz.hideQuiz = function () {
     };
 };
 
-//turns transparency of quiz to 0
+//shows quiz and hides start button
 quiz.showQuiz = function () {
+    quiz.start.classList.add('hidden');
     quiz.prompt.classList.remove('hidden');
     for (let i = 0; i < quiz.buttons.length; i++) {
         quiz.buttons[i].classList.remove('hidden');
     };
 };
+
+//shows start button, and hides quiz
+quiz.showStart = function () {
+    quiz.hideQuiz();
+    quiz.start.classList.remove('hidden');
+}
+
+//hides start button
+quiz.hideStart = function () {
+    quiz.start.classList.add('hidden');
+}
 
 //judges the options given as right or wrong after descision is made
 quiz.judgeQuiz = function (bool_list) {
@@ -130,7 +143,7 @@ for (let i = 0; i < quiz.buttons.length; i++) {
 
 quiz.resetQuiz();
 
-quiz.setChoices(['Option 1','Option 2','Option 3','Option 4']);
+quiz.showStart();
 
 //Buttons to test visuals
 
@@ -139,6 +152,8 @@ var show_quiz = document.querySelector('.show-quiz');
 var judge_quiz = document.querySelector('.judge-quiz');
 var reset_quiz = document.querySelector('.reset-quiz');
 var set_choices = document.querySelector('.set-choices');
+var show_start = document.querySelector('.show-start');
+var hide_start = document.querySelector('.hide-start');
 
 
 hide_quiz.addEventListener('click', quiz.hideQuiz);
@@ -154,3 +169,7 @@ reset_quiz.addEventListener('click', quiz.resetQuiz);
 set_choices.addEventListener('click', function () {
     quiz.setChoices(['SNSD','Perfume','SCANDAL','CLC']);
 });
+
+hide_start.addEventListener('click', quiz.hideStart);
+
+show_start.addEventListener('click', quiz.showStart);

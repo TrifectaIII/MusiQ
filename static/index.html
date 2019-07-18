@@ -107,21 +107,30 @@
             <button class='testing-button set-choices'>Set Choices</button>
             <button class='testing-button judge-quiz'>Judge Quiz</button>
             <button class='testing-button reset-quiz'>Reset Quiz</button>
+            <button class='testing-button show-start'>Show Start</button>
+            <button class='testing-button hide-start'>Hide Start</button>
           </div>
 
           <!-- GAME COLUMN -->
           <div class='six columns game-column'>
             <h2>Music Quiz</h2>
+
+            <!-- QUIZ AREA -->
             <div class='quiz-area'>
                 <h4>Your Score: <span class='quiz-score'>0</span></h4>
                 <span class='quiz-prompt'>&nbsp;</span>
                 <br>
-                <button class='quiz-button button-primary'>Option 1</button>
-                <button class='quiz-button button-primary'>Option 2</button>
-                <button class='quiz-button button-primary'>Option 3</button>
-                <button class='quiz-button button-primary'>Option 4</button>
+                <div class='quiz-buttons'>
+                  <button class='start-button button-primary hidden'>START</button>
+                  <button class='quiz-button button-primary'>Option 1</button>
+                  <button class='quiz-button button-primary'>Option 2</button>
+                  <button class='quiz-button button-primary'>Option 3</button>
+                  <button class='quiz-button button-primary'>Option 4</button>
+                </div>
             </div>
             <hr class='primary-rule'></hr>
+
+            <!-- PLAYER AREA -->
             <div class='player-area'>
               <div id='player1' class='player wait-player'>
                 <span class='player-name'>Empty</span>
