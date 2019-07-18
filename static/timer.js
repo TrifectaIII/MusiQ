@@ -37,7 +37,7 @@ var reset_timer = document.querySelector('.reset-timer');
 
 start_timer.addEventListener('click', function () {
     timer.startTimerCallback(function () {
-        console.log('Timer Ended!');
+        console.log('Callback Function Executed!');
     });
 });
 
