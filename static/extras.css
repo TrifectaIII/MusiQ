@@ -10,7 +10,7 @@
 
 @media (min-width: 550px) {
     .toggle-visualizer {
-        width:50%;
+        width:80%;
     }
 }
 
@@ -25,4 +25,10 @@
 
 .toggle-visualizer.off {
     background-color:rgb(255, 67, 67);
+}
+
+.tools-list {
+    margin-left:10px;
+    margin-right:10px;
+    text-align: left;
 }
