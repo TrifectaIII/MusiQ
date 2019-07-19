@@ -32,3 +32,8 @@
     margin-right:10px;
     text-align: left;
 }
+
+.columns.extras,
+.column.extras {
+    background-color:white;
+}
