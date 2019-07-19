@@ -67,6 +67,7 @@ var chosen = true;
 
 // starts a new question (requires list of choices, song, and what to prompt user for)
 socket.on('ask_question', function(song, askfor, choices) {
+    players.unJudgePlayers();
     quiz.resetQuiz(); //resets quiz to default
     quiz.setChoices(choices); // sets choices for new question
     chosen = false; //marked new question as not chosen
