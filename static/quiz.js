@@ -104,7 +104,7 @@ quiz.judgeQuiz = function (bool_list) {
 }
 
 //removes judging from buttons
-quiz.unJudgeQuiz = function () {
+quiz.unjudgeQuiz = function () {
     for (let i = 0; i < quiz.buttons.length; i++) {
         quiz.buttons[i].classList.remove('right');
         quiz.buttons[i].classList.remove('wrong');
@@ -114,7 +114,7 @@ quiz.unJudgeQuiz = function () {
 // zero choices, unjudges, and resets chosen
 quiz.resetQuiz = function () {
     quiz.zeroChoices();
-    quiz.unJudgeQuiz();
+    quiz.unjudgeQuiz();
     for (let i = 0; i < quiz.buttons.length; i++) {
         quiz.buttons[i].classList.remove('chosen');
         quiz.buttons[i].classList.remove('not-chosen');

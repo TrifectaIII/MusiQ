@@ -66,12 +66,16 @@ socket.on('individual_score', quiz.setScore); // SERVER RELEVANT
 //resets game by showing start button again (no argument)
 socket.on('restart_game', function () { // SERVER RELEVANT
     quiz.showStart();
+    players.finishPlayers();
+    players.unjudgePlayers();
+    quiz.resetQuiz();
 });
 
 var chosen = true;
 
 // starts a new question (requires list of choices, song, and what to prompt user for)
 socket.on('ask_question', function(song, askfor, choices) { // SERVER RELEVANT
+    players.startPlayers();
     players.unJudgePlayers(); //removes judging from players
     quiz.resetQuiz(); //resets quiz to default
     quiz.setChoices(choices); // sets choices for new question
