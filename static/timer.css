@@ -2,3 +2,9 @@
     width:100%;
     margin:25px auto;
 }
+
+@media (min-width: 550px) {
+    .timer {
+        width:90%;
+    }
+}

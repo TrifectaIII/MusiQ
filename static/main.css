@@ -37,11 +37,17 @@ hr.primary-rule {
 }
 
 .column, .columns {
-    padding:10px;
+    padding:20px;
     margin-top:10px;
     /* comment rest out to remove dark overlay */
-    background-color:rgba(0, 0, 0, 0.7);
+    background-color:rgba(0, 0, 0, 0.8);
     border-radius:3rem;
+}
+
+@media (min-width: 550px) {
+    .column, .columns {
+        margin-top:0px;
+    }
 }
 
 .primary-rule {
@@ -70,6 +76,6 @@ a:hover {
 }
 
 /* comment out to show testing buttons */
-/* .testing-button {
+.testing-button {
     display: none;
-} */
+}
