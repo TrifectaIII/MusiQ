@@ -88,7 +88,7 @@ io.sockets.on('connection', function (socket) {
 setInterval(function () {
 	for (let room in rooms) {
 		let gameRoom = rooms[room];
-		gameRoom.update();
+		// gameRoom.update(); //comment back in to update in loop
 
 		// cull empty rooms
 		if (gameRoom.isEmpty()){

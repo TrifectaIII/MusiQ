@@ -40,6 +40,8 @@ function Room (name, io) {
             // this.names[spot] = socket.id.toString();
             this.names[spot] = 'Player '+(spot+1).toString();
 
+            this.update();//update when new person joins
+
             let self = this;
 
             //wipe player slot on Disconnect
@@ -47,11 +49,13 @@ function Room (name, io) {
                 self.names[spot]  = '';
                 self.scores[spot] = 0;
                 self.sockets[spot] = undefined;
+                self.update(); //update when somebody disconnects
             });
 
             //sets name of player
             socket.on('set_name', function (name) {
                 self.names[spot] = name;
+                self.update();//update when somebody sets their name
             });
         } else {
             //when player is trying to join full lobby
@@ -61,7 +65,16 @@ function Room (name, io) {
 
     // function which relays gamestate to all clients in room
     this.update = function () {
+
+        // emit player info
         this.io.sockets.in(this.name).emit('player_info', this.names, this.scores);
+
+        //emit individual scores to each socket
+        for (let i = 0; i < this.sockets.length; i++) {
+            if (!(this.sockets[i] === undefined)){
+                this.sockets[i].emit('individual_score',this.scores[i]);
+            };
+        };
     };
 };
 

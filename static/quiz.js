@@ -43,7 +43,7 @@ quiz.zeroChoices = function () {
 //returns string of the currently selected choice, or undefined if nothing picked
 quiz.getChoice = function () {
     for (let i = 0; i <quiz.buttons.length; i++) {
-        if (quiz.buttons[i].classList.contains('chosen')) {
+        if (quiz.buttons[i].classList.contains('chosen') && quiz.buttons[i].innerHTML != '&nbsp;') {
             return quiz.buttons[i].innerHTML;
         };
     };
@@ -53,7 +53,7 @@ quiz.getChoice = function () {
 //returns index of the currently selected choice, or undefined if nothing picked
 quiz.getChoiceIndex = function () {
     for (let i = 0; i <quiz.buttons.length; i++) {
-        if (quiz.buttons[i].classList.contains('chosen')) {
+        if (quiz.buttons[i].classList.contains('chosen') && quiz.buttons[i].innerHTML != '&nbsp;') {
             return i;
         };
     };
@@ -141,8 +141,8 @@ for (let i = 0; i < quiz.buttons.length; i++) {
     });
 };
 
+//begin with blank quiz and start button showing
 quiz.resetQuiz();
-
 quiz.showStart();
 
 //Buttons to test visuals
