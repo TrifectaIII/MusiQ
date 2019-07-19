@@ -40,8 +40,14 @@ socket.on('cannot_join', function () {
     window.location.href = window.location.href.slice(0,url.lastIndexOf('/')+1);
 });
 
-// GAME UPDATES
+// GAME MESSAGES
 /////////////////////////////////////////////////////////////////////////////
+
+//clicking the start button tells server to start the game
+quiz.start.addEventListener('click', function () {
+    socket.emit('start_game');
+    console.log('sent message to start_game');
+});
 
 // updates player info (requires namelist and scorelist)
 socket.on('player_info', players.updatePlayers);
@@ -61,11 +67,11 @@ var chosen = true;
 
 // starts a new question (requires list of choices, song, and what to prompt user for)
 socket.on('ask_question', function(song, askfor, choices) {
-    quiz.resetQuiz();
-    quiz.setChoices(choices);
-    chosen = false;
-    quiz.askFor(askfor);
-    quiz.showQuiz();
+    quiz.resetQuiz(); //resets quiz to default
+    quiz.setChoices(choices); // sets choices for new question
+    chosen = false; //marked new question as not chosen
+    quiz.askFor(askfor); // set prompt
+    quiz.showQuiz();//show the quiz
     //execute song play
     timer.startTimerCallback(function() {
         console.log('nothing chosen in time :(');
@@ -76,11 +82,14 @@ socket.on('ask_question', function(song, askfor, choices) {
 // loop to check whether or not something has been chosen
 setInterval(function () {
     if ((quiz.getChoice() != undefined) && (!chosen)) {
+        // something chosen, so stop timer
+        timer.resetTimer();
         chosen = true;
         console.log('I picked',quiz.getChoice());
         // emit picked message to server here
+
     };
-}, 50);
+}, 100);
 
 // for testing only
 set_choices.addEventListener('click', function () {
