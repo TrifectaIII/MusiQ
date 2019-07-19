@@ -43,31 +43,36 @@ socket.on('cannot_join', function () {
 // GAME MESSAGES
 /////////////////////////////////////////////////////////////////////////////
 
-//clicking the start button tells server to start the game
+//clicking the start button tells server to start the game (no argument)
 quiz.start.addEventListener('click', function () {
-    socket.emit('start_game');
+    socket.emit('start_game'); // SERVER RELEVANT
     console.log('sent message to start_game');
 });
 
 // updates player info (requires namelist and scorelist)
-socket.on('player_info', players.updatePlayers);
+socket.on('player_info', players.updatePlayers); // SERVER RELEVANT
 
 // displays which choices were right or wrong
 // displays whether or not each player got it right or wrong
 // (requires a list of booleans for each)
-socket.on('judge', function (choice_bools,player_bools) {
+socket.on('judge', function (choice_bools,player_bools) { // SERVER RELEVANT
     quiz.judgeQuiz(choice_bools);
     players.judgePlayers(player_bools);
 });
 
 // updates score of client (requires an int)
-socket.on('individual_score', quiz.setScore);
+socket.on('individual_score', quiz.setScore); // SERVER RELEVANT
+
+//resets game by showing start button again (no argument)
+socket.on('restart_game', function () { // SERVER RELEVANT
+    quiz.showStart();
+});
 
 var chosen = true;
 
 // starts a new question (requires list of choices, song, and what to prompt user for)
-socket.on('ask_question', function(song, askfor, choices) {
-    players.unJudgePlayers();
+socket.on('ask_question', function(song, askfor, choices) { // SERVER RELEVANT
+    players.unJudgePlayers(); //removes judging from players
     quiz.resetQuiz(); //resets quiz to default
     quiz.setChoices(choices); // sets choices for new question
     chosen = false; //marked new question as not chosen
@@ -76,7 +81,8 @@ socket.on('ask_question', function(song, askfor, choices) {
     //execute song play
     timer.startTimerCallback(function() {
         console.log('nothing chosen in time :(');
-        //emit picked nothing message
+        //let server know that no choice was made
+        socket.emit('no_choice'); // SERVER RELEVANT
     });
 });
 
@@ -87,8 +93,8 @@ setInterval(function () {
         timer.resetTimer();
         chosen = true;
         console.log('I picked',quiz.getChoice());
-        // emit picked message to server here
-
+        // send choice made to server as string (use quiz.getChoiceIndex() for index instead)
+        socket.emit('choice',quiz.getChoice()); // SERVER RELEVANT
     };
 }, 100);
 
