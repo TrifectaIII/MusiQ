@@ -64,11 +64,12 @@ socket.on('judge', function (choice_bools,player_bools) { // SERVER RELEVANT
 socket.on('individual_score', quiz.setScore); // SERVER RELEVANT
 
 //resets game by showing start button again (no argument)
-socket.on('restart_game', function () { // SERVER RELEVANT
+socket.on('restart_game', function (scorelist) { // SERVER RELEVANT
     quiz.showStart();
     players.finishPlayers();
     players.unjudgePlayers();
     quiz.resetQuiz();
+    players.placePlayers(scorelist);
 });
 
 var chosen = true;
@@ -77,6 +78,7 @@ var chosen = true;
 socket.on('ask_question', function(song, askfor, choices) { // SERVER RELEVANT
     players.startPlayers();
     players.unJudgePlayers(); //removes judging from players
+    players.unplacePlayers();
     quiz.resetQuiz(); //resets quiz to default
     quiz.setChoices(choices); // sets choices for new question
     chosen = false; //marked new question as not chosen
@@ -85,8 +87,8 @@ socket.on('ask_question', function(song, askfor, choices) { // SERVER RELEVANT
     //execute song play
     timer.startTimerCallback(function() {
         console.log('nothing chosen in time :(');
-        //let server know that no choice was made
-        socket.emit('no_choice'); // SERVER RELEVANT
+        //let server know that no choice was made by sending empty string
+        socket.emit('choice',''); // SERVER RELEVANT
     });
 });
 
