@@ -34,9 +34,9 @@ socket.on('set_link', function (room_name) {
     history.pushState({},"",url.slice(0,url.lastIndexOf('/')+1)+'?room='+room_name);
 });
 
-//when room is full
+//when room is full, notify player and start new lobby
 socket.on('cannot_join', function () {
-    alert('Cannot Join Game: Room Full');
+    alert('Cannot Join Game: Room Full. Joining New Lobby Instead.');
     window.location.href = window.location.href.slice(0,url.lastIndexOf('/')+1);
 });
 
@@ -103,6 +103,7 @@ setInterval(function () {
 }, 100);
 
 // for testing only
+//////////////////////////////////////////////////////////////////////
 set_choices.addEventListener('click', function () {
     chosen = false;
 });

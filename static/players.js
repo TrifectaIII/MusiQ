@@ -38,6 +38,7 @@ players.finishPlayers = function () {
 
 //takes list of 4 booleans to display whether or not each player got the question right
 players.judgePlayers = function (bool_list) {
+    players.unjudgePlayers();
     for (let i = 0; i < players.playerbars.length; i++) {
         if (!players.playerbars[i].classList.contains('wait-player')) {
             if (bool_list[i]) {
@@ -57,24 +58,77 @@ players.unjudgePlayers = function () {
     };
 };
 
-// unjudge, finish and revert all to empty
-players.resetPlayers = function () {
-    players.unjudgePlayers();
-    players.finishPlayers();
-    players.updatePlayers(['','','',''],[0,0,0,0]);
+//places players at end of game wtih gold/silver/bronze
+players.placePlayers = function (score_list) {
+    players.unplacePlayers();
+
+    for (let i = 0; i < score_list.length; i++) {
+        players.playerbars[i].classList.add('fourth-place');
+    };
+
+    first = Math.max(...score_list);
+    for (let i = 0; i < score_list.length; i++) {
+        if (score_list[i] == first) {
+            players.playerbars[i].classList.add('first-place');
+            players.playerbars[i].classList.remove('fourth-place');
+            score_list[i] = -1;
+        };
+    };
+
+    second = Math.max(...score_list);
+    for (let i = 0; i < score_list.length; i++) {
+        if (score_list[i] == second) {
+            players.playerbars[i].classList.add('second-place');
+            players.playerbars[i].classList.remove('fourth-place');
+            score_list[i] = -1;
+        };
+    };
+
+    third = Math.max(...score_list);
+    for (let i = 0; i < score_list.length; i++) {
+        if (score_list[i] == third) {
+            players.playerbars[i].classList.add('third-place');
+            players.playerbars[i].classList.remove('fourth-place');
+        };
+    };
 };
 
+//removes placing
+players.unplacePlayers = function () {
+    for (let i = 0; i < players.playerbars.length; i++) {
+        players.playerbars[i].classList.remove('fourth-place');
+        players.playerbars[i].classList.remove('third-place');
+        players.playerbars[i].classList.remove('second-place');
+        players.playerbars[i].classList.remove('first-place');
+    };
+};
+
+// unjudge, finish and unplace all players
+players.resetPlayers = function () {
+    players.unjudgePlayers();
+    players.unplacePlayers();
+    players.finishPlayers();
+};
+
+//reset players at start just in case
 players.resetPlayers();
 
+
+
+
+
+
 //Buttons to test visuals
+//////////////////////////////////////////////////////////////////////
 
 var add_players = document.querySelector('.add-players');
 var start_game = document.querySelector('.start-game');
 var judge_players = document.querySelector('.judge-players');
 var reset_players = document.querySelector('.reset-players');
+var place_players = document.querySelector('.place-players');
 
 add_players.addEventListener('click', function () {
-    players.updatePlayers(['Derek','David','Dennis',''],
+    players.updatePlayers(['Derek','David','Dennis','Denise'],
                   [12,14,16,18]);
 });
 
@@ -85,3 +139,7 @@ judge_players.addEventListener('click', function () {
 });
 
 reset_players.addEventListener('click', players.resetPlayers);
+
+place_players.addEventListener('click', function () {
+    players.placePlayers([2,4,3,1]);
+});

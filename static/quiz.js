@@ -145,7 +145,13 @@ for (let i = 0; i < quiz.buttons.length; i++) {
 quiz.resetQuiz();
 quiz.showStart();
 
+
+
+
+
+
 //Buttons to test visuals
+//////////////////////////////////////////////////////////////////////
 
 var hide_quiz = document.querySelector('.hide-quiz');
 var show_quiz = document.querySelector('.show-quiz');

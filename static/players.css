@@ -34,41 +34,61 @@
     transition-property:background-color border-color color;
 }
 
-#player1.player {
+.player1.player {
     background-color:#F4ADC6;
     border-color:#F4ADC6;
 }
 
-#player2.player {
+.player2.player {
     background-color:#FDFD95;
     border-color:#FDFD95;
 }
 
-#player3.player {
+.player3.player {
     background-color:#7799CC;
     border-color:#7799CC;
 }
 
-#player4.player {
+.player4.player {
     background-color:#F69CC4;
     border-color:#F69CC4;
 }
 
 .player.right {
-    background-color:rgb(67, 255, 92)!important;
-    border-color:rgb(67, 255, 92)!important;
+    background-color:rgb(67, 255, 92);
+    border-color:rgb(67, 255, 92);
 }
 
 .player.wrong {
-    background-color:rgb(255, 67, 67)!important;
-    border-color:rgb(255, 67, 67)!important;
+    background-color:rgb(255, 67, 67);
+    border-color:rgb(255, 67, 67);
+}
+
+.player.first-place {
+    background-color:rgb(255, 196, 0);
+    border-color:rgb(255, 196, 0);
+}
+
+.player.second-place {
+    background-color:silver;
+    border-color:silver;
+}
+
+.player.third-place {
+    background-color:#CD7F32;
+    border-color:#CD7F32;
+}
+
+.player.fourth-place {
+    background-color:#444;
+    border-color:#444;
+    color:white;
 }
 
 .player.wait-player {
-    /* overwrite inline html colors */
-    background-color:rgb(170, 170, 170)!important;
-    border-color:rgb(170, 170, 170)!important;
-    color:rgb(100, 100, 100);
+    background-color:black;
+    border-color:rgb(170, 170, 170);
+    color:rgb(170, 170, 170);
 }
 
 .player.wait-player.started {
