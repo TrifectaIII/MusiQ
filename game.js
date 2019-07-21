@@ -86,6 +86,8 @@ function Room (name, io) {
         this.update();
 
         var thisRoom = this;
+
+        //faallback timer in case of disconnects / new connects
         this.choice_timer = setTimeout(function () {
             thisRoom.answered = [true,true,true,true];
             thisRoom.sendJudge();
@@ -102,17 +104,20 @@ function Room (name, io) {
 
         //after judging, wait a bit then send next question
         if (this.round == this.totalround){
-        	this.io.sockets.in(this.name).emit('restart_game', this.scores);
-
-        	//reset room data
-        	this.scores = [0,0,0,0];
-		    this.started = false;
-		    this.corrects = [false,false,false,false];
-		    this.answered = [false,false,false,false]; 
-		    this.round = 1;
-        }else{
             var thisRoom = this;
+            setTimeout(function () {
+                thisRoom.io.sockets.in(thisRoom.name).emit('restart_game', thisRoom.scores);
+
+                //reset room data
+                thisRoom.scores = [0,0,0,0];
+                thisRoom.started = false;
+                thisRoom.corrects = [false,false,false,false];
+                thisRoom.answered = [false,false,false,false]; 
+                thisRoom.round = 1;
+            },1000 * 3);
+        }else{
             this.round +=1;
+            var thisRoom = this;
 	        setTimeout(function () {
 	            thisRoom.sendQuestion();
 	        }, 1000 * 3);//time in MS to wait until next question
