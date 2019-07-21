@@ -38,10 +38,12 @@ extras.toggle_visualizer.addEventListener('click', function () {
         extras.toggle_visualizer.classList.remove('on');
         extras.toggle_visualizer.classList.add('off');
         extras.toggle_visualizer.innerHTML = 'OFF';
+	   myp5.viz.on = false;
     } else {
         //turn on if off
         extras.toggle_visualizer.classList.remove('off');
         extras.toggle_visualizer.classList.add('on');
         extras.toggle_visualizer.innerHTML = 'ON';
+	  myp5.viz.on = true;
     };
 });

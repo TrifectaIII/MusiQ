@@ -70,6 +70,7 @@ socket.on('round_info', quiz.setRound);
 // displays whether or not each player got it right or wrong
 // (requires a list of booleans for each)
 socket.on('judge', function (choice_bools,player_bools) { // SERVER RELEVANT
+    myp5.stopsong();
     quiz.judgeQuiz(choice_bools);
     players.judgePlayers(player_bools);
     players.resetAnswered(); //resets all answered
