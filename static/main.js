@@ -57,6 +57,7 @@ socket.on('game_started', function () {
     players.unplacePlayers(); //removes placing
     players.resetAnswered(); //resets all answered
     quiz.resetQuiz(); //resets quiz to default
+    socket.emit('choice','');//picks nothing in started late
     alert('You are joining an in-progress game!');
 });
 
