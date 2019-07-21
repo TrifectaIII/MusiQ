@@ -69,6 +69,11 @@
     border-color:rgb(255, 196, 0);
 }
 
+/* adds medal emoji next to first places */
+.player.first-place > .player-name::after {
+    content:" \1F947";
+}
+
 .player.second-place {
     background-color:silver;
     border-color:silver;
