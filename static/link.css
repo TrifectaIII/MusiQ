@@ -3,8 +3,19 @@
     width:80%;
 }
 
-.link-button {
+.link-button.button-primary {
     width:80%;
+    font-size: larger;
+    background-color:#FDFD95;
+    border-color:#FDFD95;
+    color:#222;
+}
+
+.link-button.button-primary:hover,
+.link-button.button-primary:focus {
+    background-color:rgb(255, 255, 96);
+    border-color:rgb(255, 255, 96);
+    color:black;
 }
 
 @media (min-width: 550px) {

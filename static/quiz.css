@@ -15,12 +15,12 @@
     top:0px;
     width:80%;
     height:20.6rem;
-    background-color: slateblue;
+    background-color:mediumpurple ;
     font-size: 5rem;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    -webkit-transition: all 0.7s ease-out;
+    -moz-transition: all 0.7s ease-out;
+    -o-transition: all 0.7s ease-out;
+    transition: all 0.7s ease-out;
     -webkit-transition-property:background-color border-color color;
     -moz-transition-property:background-color border-color color;
     -o-transition-property:background-color border-color color;
@@ -32,7 +32,7 @@
 
 .start-button.button-primary:focus,
 .start-button.button-primary:hover {
-    background-color:mediumpurple;
+    background-color:slateblue;
     color:white;
 }
 
@@ -52,10 +52,10 @@
     width:80%;
     padding:4px 0px;
     font-size:x-large;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    -webkit-transition: all 0.7s ease-out;
+    -moz-transition: all 0.7s ease-out;
+    -o-transition: all 0.7s ease-out;
+    transition: all 0.7s ease-out;
     -webkit-transition-property:background-color border-color color;
     -moz-transition-property:background-color border-color color;
     -o-transition-property:background-color border-color color;
