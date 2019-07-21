@@ -36,7 +36,7 @@ socket.on('set_link', function (room_name) {
 
 //when room is full, notify player and start new lobby
 socket.on('cannot_join', function () {
-    alert('Cannot Join Game: Room Full. Joining New Lobby Instead.');
+    alert('Cannot Join Game: Room full or game in progress. Joining new lobby instead.');
     window.location.href = window.location.href.slice(0,url.lastIndexOf('/')+1);
 });
 

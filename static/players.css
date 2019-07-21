@@ -106,7 +106,7 @@
 @media (min-width: 550px) {
     .player.wait-player.started {
         display:block;
-        opacity: 0;
+        opacity: 0.1;
     }
 }
 
