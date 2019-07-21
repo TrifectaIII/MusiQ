@@ -3,6 +3,10 @@
     width:80%;
 }
 
+.link-desc {
+    font-size:larger;
+}
+
 .link-button.button-primary {
     width:80%;
     font-size: larger;
