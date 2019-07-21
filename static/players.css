@@ -90,6 +90,10 @@
     color:white;
 }
 
+.player.answered {
+    border-color:#33C3F0;
+}
+
 .player.wait-player {
     background-color:black;
     border-color:rgb(170, 170, 170);

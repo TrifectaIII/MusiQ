@@ -58,13 +58,13 @@ socket.on('player_info', players.updatePlayers); // SERVER RELEVANT
 socket.on('judge', function (choice_bools,player_bools) { // SERVER RELEVANT
     quiz.judgeQuiz(choice_bools);
     players.judgePlayers(player_bools);
-    
+    players.resetAnswered(); //resets all answered
 });
 
 // updates score of client (requires an int)
 socket.on('individual_score', quiz.setScore); // SERVER RELEVANT
 
-//resets game by showing start button again (no argument)
+//resets game by showing start button again (scorelist)
 socket.on('restart_game', function (scorelist) { // SERVER RELEVANT
     quiz.showStart();
     players.finishPlayers();
@@ -73,13 +73,19 @@ socket.on('restart_game', function (scorelist) { // SERVER RELEVANT
     players.placePlayers(scorelist);
 });
 
+//lets player know who has chosen so far
+socket.on('answered', function (answeredlist) {
+    players.setAnswered(answeredlist);
+});
+
 var chosen = true;
 
 // starts a new question (requires list of choices, song, and what to prompt user for)
 socket.on('ask_question', function(song, askfor, choices) { // SERVER RELEVANT
     players.startPlayers();
     players.unjudgePlayers(); //removes judging from players
-    players.unplacePlayers();
+    players.unplacePlayers(); //removes placing
+    players.resetAnswered(); //resets all answered
     quiz.resetQuiz(); //resets quiz to default
     quiz.setChoices(choices); // sets choices for new question
     chosen = false; //marked new question as not chosen

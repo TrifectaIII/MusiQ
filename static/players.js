@@ -112,8 +112,23 @@ players.unplacePlayers = function () {
     };
 };
 
+players.setAnswered = function (answered) {
+    for (let i = 0; i < players.playerbars.length; i++) {
+        if (answered[i]) {
+            players.playerbars[i].classList.add('answered');
+        };
+    };
+};
+
+players.resetAnswered = function () {
+    for (let i = 0; i < players.playerbars.length; i++) {
+        players.playerbars[i].classList.remove('answered');
+    };
+};
+
 // unjudge, finish and unplace all players
 players.resetPlayers = function () {
+    players.resetAnswered();
     players.unjudgePlayers();
     players.unplacePlayers();
     players.finishPlayers();
