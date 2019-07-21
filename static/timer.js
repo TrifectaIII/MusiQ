@@ -30,7 +30,7 @@ timer.startTimerCallback = function (callback) {
 
 //resets and turns off timer
 timer.resetTimer = function () {
-    timer.bar.set(0);
+    timer.bar.stop();
 };
 
 //testing buttons

@@ -67,6 +67,9 @@ players.placePlayers = function (score_list) {
     };
 
     first = Math.max(...score_list);
+    if (first <= 0){
+        return;
+    }
     for (let i = 0; i < score_list.length; i++) {
         if (score_list[i] == first) {
             players.playerbars[i].classList.add('first-place');
@@ -76,6 +79,9 @@ players.placePlayers = function (score_list) {
     };
 
     second = Math.max(...score_list);
+    if (second <= 0){
+        return;
+    }
     for (let i = 0; i < score_list.length; i++) {
         if (score_list[i] == second) {
             players.playerbars[i].classList.add('second-place');
@@ -85,6 +91,9 @@ players.placePlayers = function (score_list) {
     };
 
     third = Math.max(...score_list);
+    if (third <= 0){
+        return;
+    }
     for (let i = 0; i < score_list.length; i++) {
         if (score_list[i] == third) {
             players.playerbars[i].classList.add('third-place');
@@ -141,5 +150,5 @@ judge_players.addEventListener('click', function () {
 reset_players.addEventListener('click', players.resetPlayers);
 
 place_players.addEventListener('click', function () {
-    players.placePlayers([2,4,3,1]);
+    players.placePlayers([4,3,2,1]);
 });

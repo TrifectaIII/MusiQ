@@ -1,5 +1,9 @@
-.quiz-prompt {
+.quiz-score-line, .quiz-round {
     font-size:x-large;
+}
+
+.quiz-prompt {
+    font-size:xx-large;
 }
 
 .quiz-buttons {

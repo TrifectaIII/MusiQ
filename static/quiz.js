@@ -4,10 +4,16 @@ quiz.score = document.querySelector('.quiz-score');
 quiz.prompt = document.querySelector('.quiz-prompt');
 quiz.buttons = document.querySelectorAll('.quiz-button');
 quiz.start = document.querySelector('.start-button');
+quiz.round = document.querySelector('.quiz-round');
 
 //sets the users score to num or string
 quiz.setScore = function (score) {
     quiz.score.innerHTML = String(score);
+};
+
+//sets the current round indicator
+quiz.setRound = function (round, totalround) {
+    quiz.round.innerHTML = 'Round: '+round.toString()+'/'+totalround.toString();
 };
 
 //sets prompt for quiz question based on what we want to ask for (artist, song (title), etc)
