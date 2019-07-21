@@ -35,6 +35,13 @@ function Room (name, io) {
         }
     };
 
+    this.round = 0;
+
+    this.totalround = 2; 
+
+    this.correct_answer = "g-minor" ;
+
+
     //checks if room is empty
     this.isEmpty = function () {
         let empty = true;
@@ -62,8 +69,11 @@ function Room (name, io) {
     this.sendQuestion = function () {
         //generate new question
         var song = "/static/sample/sample5.mp3";
-        var question = "artist";
+        var question = "artist"; // artist, composer,song
         var choices = ["1","g-minor","3","4"];
+
+
+        //this.correct_answer = 'snsd';
 
         //reset trackers
         this.corrects = [false,false,false,false];
@@ -81,10 +91,23 @@ function Room (name, io) {
         this.update();
 
         //after judging, wait a bit then send next question
-        // thisRoom = this;
-        // setTimeout(function () {
-        //     thisRoom.sendQuestion();
-        // }, 1000 * 5);//time in MS to wait until next question
+        if (this.round == this.totalround){
+        	this.io.sockets.in(this.name).emit('restart_game', this.scores);
+
+        	//reset room data
+        	this.scores = [0,0,0,0];
+		    this.started = false;
+		    this.corrects = [false,false,false,false];
+		    this.answered = [false,false,false,false]; 
+		    this.round = 0;
+        }else{
+	        var thisRoom = this;
+	        this.round +=1;
+	        setTimeout(function () {
+	            thisRoom.sendQuestion();
+	        }, 1000 * 5);//time in MS to wait until next question
+	    }
+
     };
 
     //updates all player info and scores
@@ -143,17 +166,18 @@ function Room (name, io) {
 
             //when game starts, immediately generate and send a question
              socket.on('start_game',function(){
-                thisRoom.started = false;
-                thisRoom.sendQuestion();
+             	if (!(thisRoom.started)){
+	                thisRoom.started = true;
+	                thisRoom.sendQuestion();
+            	}
+
             });
 
             //when client sends back their choice
             socket.on('choice',function(choice){
-                //return name of choice as string 
-                var answer = "g-minor";
 
                 //check if this socket got it correct
-                if (choice == answer){
+                if (choice == thisRoom.correct_answer){
                     //give points
                     thisRoom.scores[spot] += 1;
                     //mark them as correct

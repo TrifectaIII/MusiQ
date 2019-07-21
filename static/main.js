@@ -58,6 +58,7 @@ socket.on('player_info', players.updatePlayers); // SERVER RELEVANT
 socket.on('judge', function (choice_bools,player_bools) { // SERVER RELEVANT
     quiz.judgeQuiz(choice_bools);
     players.judgePlayers(player_bools);
+    
 });
 
 // updates score of client (requires an int)
