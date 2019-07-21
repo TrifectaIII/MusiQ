@@ -35,7 +35,7 @@ function Room (name, io) {
         }
     };
 
-    this.round = 0;
+    this.round = 1;
 
     this.totalround = 2; 
 
@@ -99,10 +99,10 @@ function Room (name, io) {
 		    this.started = false;
 		    this.corrects = [false,false,false,false];
 		    this.answered = [false,false,false,false]; 
-		    this.round = 0;
+		    this.round = 1;
         }else{
-	        var thisRoom = this;
-	        this.round +=1;
+            var thisRoom = this;
+            this.round +=1;
 	        setTimeout(function () {
 	            thisRoom.sendQuestion();
 	        }, 1000 * 5);//time in MS to wait until next question
@@ -114,6 +114,9 @@ function Room (name, io) {
     this.update = function () {
         // emit player info to room
         this.io.sockets.in(this.name).emit('player_info', this.names, this.scores);
+
+        //emit round info to room
+        this.io.sockets.in(this.name).emit('round_info', this.round, this.totalround);
 
         //emit individual scores to each socket
         for (let i = 0; i < this.sockets.length; i++) {

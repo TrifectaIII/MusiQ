@@ -52,6 +52,9 @@ quiz.start.addEventListener('click', function () {
 // updates player info (requires namelist and scorelist)
 socket.on('player_info', players.updatePlayers); // SERVER RELEVANT
 
+//set answered players
+socket.on('round_info', quiz.setRound);
+
 // displays which choices were right or wrong
 // displays whether or not each player got it right or wrong
 // (requires a list of booleans for each)
