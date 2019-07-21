@@ -41,7 +41,6 @@ io.sockets.on('connection', function (socket) {
 
 	//place socket in room
     socket.on('join_room', function (roomName){
-		console.log(socket.id,'is joining',roomName);
 		
 		//if no room specified
         if (roomName == 'NEW') {
@@ -60,6 +59,7 @@ io.sockets.on('connection', function (socket) {
 			//add room to rooms
 			rooms[newName] = new game.Room(newName,io);
 
+			console.log(socket.id,'is joining',newName);
 			//add socket to room
 			rooms[newName].add(socket);
 			socket.emit('set_link', newName);
@@ -77,6 +77,8 @@ io.sockets.on('connection', function (socket) {
 			if (isnew) {
 				rooms[roomName] = new game.Room(roomName,io);
 			}
+			
+			console.log(socket.id,'is joining',roomName);
 			//add socket to room
 			rooms[roomName].add(socket);
             socket.emit('set_link', +roomName);

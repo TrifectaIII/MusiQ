@@ -57,9 +57,7 @@ function Room (name, io) {
 
     //check if everyone has answered
     this.check_answered = function(){
-        console.log(this.answered);
         for( let i = 0; i <this.sockets.length; i++){
-            console.log(this.sockets[i] === undefined);
             if ((!(this.sockets[i] === undefined)) && (this.answered[i]== false)){
                 return false;
             };
