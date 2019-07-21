@@ -90,8 +90,8 @@
     color:white;
 }
 
-.player.answered {
-    border-color:#33C3F0;
+.player.answered > .player-name::after {
+    content:" \2714";
 }
 
 .player.wait-player {

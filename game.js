@@ -37,9 +37,11 @@ function Room (name, io) {
 
     this.round = 1;
 
-    this.totalround = 2; 
+    this.totalround = 5; 
 
     this.correct_answer = "g-minor" ;
+
+    this.choice_timer;
 
 
     //checks if room is empty
@@ -82,10 +84,18 @@ function Room (name, io) {
         //emit message
         this.io.sockets.in(this.name).emit('ask_question', song, question,choices);
         this.update();
+
+        var thisRoom = this;
+        this.choice_timer = setTimeout(function () {
+            thisRoom.answered = [true,true,true,true];
+            thisRoom.sendJudge();
+        }, 1000*21);//time in MS after which server will force judging
     };
 
     //judges choices and players
     this.sendJudge = function () {
+        clearTimeout(this.choice_timer);
+
         var choices_correct = [false,true,false,false];
         this.io.sockets.in(this.name).emit('judge',choices_correct,this.corrects);
         this.update();
@@ -105,7 +115,7 @@ function Room (name, io) {
             this.round +=1;
 	        setTimeout(function () {
 	            thisRoom.sendQuestion();
-	        }, 1000 * 5);//time in MS to wait until next question
+	        }, 1000 * 3);//time in MS to wait until next question
 	    }
 
     };
@@ -131,7 +141,7 @@ function Room (name, io) {
         //add socket only if an empty slot exists and game hasnt started
         let joined = false;
         let spot = 0;
-        if (!this.started) {
+        // if (!this.started) {
             for (let i = 0; i < this.sockets.length; i++){
                 if (this.sockets[i] === undefined) {
                     this.sockets[i] = socket;
@@ -142,9 +152,13 @@ function Room (name, io) {
                     break;
                 };
             };
-        };
+        // };
 
         if (joined) {
+            if (this.started) {
+                socket.emit('game_started');
+            };
+
             //when player successfully joins lobby, setup
             this.names[spot] = 'Player '+(spot+1).toString();
 
@@ -178,21 +192,22 @@ function Room (name, io) {
 
             //when client sends back their choice
             socket.on('choice',function(choice){
+                if (!(thisRoom.answered[spot])){
+                    //check if this socket got it correct
+                    if (choice == thisRoom.correct_answer){
+                        //give points
+                        thisRoom.scores[spot] += 1;
+                        //mark them as correct
+                        thisRoom.corrects[spot] = true;
+                    };
 
-                //check if this socket got it correct
-                if (choice == thisRoom.correct_answer){
-                    //give points
-                    thisRoom.scores[spot] += 1;
-                    //mark them as correct
-                    thisRoom.corrects[spot] = true;
-                };
-
-                //mark this socket as answered
-                thisRoom.answered[spot] = true;
-
-                // did everyone answer?
-                if (thisRoom.check_answered()){
-                    thisRoom.sendJudge();
+                    //mark this socket as answered
+                    thisRoom.answered[spot] = true;
+                    thisRoom.io.sockets.in(thisRoom.name).emit('answered', thisRoom.answered);
+                    // did everyone answer?
+                    if (thisRoom.check_answered()){
+                        thisRoom.sendJudge();
+                    };
                 };
             });
 

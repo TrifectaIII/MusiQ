@@ -7,7 +7,7 @@ timer.bar = new ProgressBar.Line(timer.elem, {
     strokeWidth: 2.5,
     trailColor: '#f4f4f4',
     trailWidth: 2.5,
-    duration: 1000 * 30,//duration of timer, in MS currently set to 30 sec
+    duration: 1000 * 20,//duration of timer, in MS currently set to 30 sec
     easing: 'linear',
     from: { color: 'rgb(67, 255, 92)'},
     to: { color: 'rgb(255, 67, 67)'},

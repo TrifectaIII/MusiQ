@@ -36,7 +36,7 @@ socket.on('set_link', function (room_name) {
 
 //when room is full, notify player and start new lobby
 socket.on('cannot_join', function () {
-    alert('Cannot Join Game: Room full or game in progress. Joining new lobby instead.');
+    alert('Cannot Join Game: Room Full. Joining new lobby instead.');
     window.location.href = window.location.href.slice(0,url.lastIndexOf('/')+1);
 });
 
@@ -49,10 +49,21 @@ quiz.start.addEventListener('click', function () {
     console.log('sent message to start_game');
 });
 
+//hide start button when joining an in-progress game
+socket.on('game_started', function () {
+    quiz.hideStart();
+    players.startPlayers();
+    players.unjudgePlayers(); //removes judging from players
+    players.unplacePlayers(); //removes placing
+    players.resetAnswered(); //resets all answered
+    quiz.resetQuiz(); //resets quiz to default
+    alert('You are joining an in-progress game!');
+});
+
 // updates player info (requires namelist and scorelist)
 socket.on('player_info', players.updatePlayers); // SERVER RELEVANT
 
-//set answered players
+//set round info
 socket.on('round_info', quiz.setRound);
 
 // displays which choices were right or wrong
