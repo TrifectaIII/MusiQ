@@ -14,11 +14,11 @@ var sketch = function(p){
     }
     
     p.load_fail = function(){
-        console.log("File didnit load");
+        console.log("File didn't load");
     }
     
-    p.preload = function(file){
-        p.song = p.loadSound("static/sample/sample5.mp3",p.load_success,p.load_fail);
+    p.loadsong = function(file){
+        p.song = p.loadSound(file,p.load_success,p.load_fail);
     }
     
     p.setup = function(){
@@ -47,23 +47,6 @@ var sketch = function(p){
 
 var myp5 = new p5(sketch);
 
-
-
-
-
-
-//function setup() {
-//    
-//    cnv= createCanvas(windowWidth, windowHeight, WEBGL); //coordinate system changes with WEBGL 
-//    cnv.position(0,0);
-//    // puts canvas element in the background 
-//    cnv.style('z-index','-1');
-//        
-//    amp = new p5.Amplitude;
-//    fft = new p5.FFT(.5, 1024); //(smoothing, bit range)
-//
-//    viz = new visualizer(); // cant use Vi
-//}
 
 class visualizer{
     
@@ -174,30 +157,3 @@ class visualizer{
     
 }//end Visuzlizer
 
-//function draw(){
-//    background(45);
-//    viz.render();
-//}
-
-
-
-//function succuss(){
-//    console.log("File loaded properly");
-//    song.play(); // does not work on chrome 
-//
-//}
-//
-//function fail(){
-//    console.log("DIDNT LOAD");
-//}
-//
-//function preload(){
-//    song =loadSound("sample/sample5.mp3",succuss,fail);
-//}
-
-
-// global p5 function
-//function windowResized(){
-//    myp5.resizeCanvas(myp5.windowWidth, myp5.windowHeight);
-//    
-//}

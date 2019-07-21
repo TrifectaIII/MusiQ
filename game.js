@@ -5,6 +5,23 @@ function Room (name, io) {
     this.scores = [0,0,0,0];
     this.started = false;
     this.io = io;
+    //list of booleans to keep track f which player got their qustion right
+    this.corrects = [false,false,false,false];
+    this.selections = {
+        "/static/sample/sample5.mp3": {
+            "artist": "Rando Person",
+            "name": "g minor"
+        } 
+        , 
+        "/static/sample/megalo.mp3": {
+            "artist": "Megalo box",
+            "name":"Sachio"
+        }
+
+
+    };
+    //tracks who has already answered
+    this.answered = [false,false,false,false]; 
 
     //checks if room is empty
     this.isEmpty = function () {
@@ -16,6 +33,19 @@ function Room (name, io) {
         };
         return empty;
     };
+
+    //check if everyone has answered
+    this.check_answered = function(){
+        console.log(this.answered);
+        for( let i = 0; i <this.sockets.length; i++){
+            console.log(this.sockets[i] === undefined);
+            if ((!(this.sockets[i] === undefined)) && (this.answered[i]== false)){
+
+                return false;
+            }
+        }
+        return true;
+    }
 
     //adds new socket to room
     this.add = function (socket) {
@@ -57,6 +87,44 @@ function Room (name, io) {
                 self.names[spot] = name;
                 self.update();//update when somebody sets their name
             });
+
+             socket.on('start_game',function(){
+                var song = "/static/sample/sample5.mp3";
+                var question = "artist";
+                var choices = ["1","g-minor","3","4"];
+
+                // console.log("Server selected:",song);
+
+                //emit song to each socket
+                self.corrects = [false,false,false,false];
+                self.answered - [false,false,false,false];
+                self.io.sockets.in(self.name).emit('ask_question', song, question,choices);
+            });
+
+            socket.on('choice',function(choice){
+                //return name of choice as string 
+                var answer = "g-minor";
+
+                self.answered[spot] = true;
+                if (choice == answer){
+                    console.log(socket.id, "got", 10 ,"much points");
+                    self.scores[spot] += 10;
+                    self.corrects[spot] = true;
+                }
+
+                
+                // did everyone answered?
+                if (self.check_answered()){
+                    self.io.sockets.in(self.name).emit('judge',[false,true,true,true],self.corrects);
+                    console.log("EMIITED judge");
+                    self.update();
+                }
+
+            });
+
+
+
+
         } else {
             //when player is trying to join full lobby
             socket.emit('cannot_join');

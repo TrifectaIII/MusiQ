@@ -77,7 +77,7 @@ var chosen = true;
 // starts a new question (requires list of choices, song, and what to prompt user for)
 socket.on('ask_question', function(song, askfor, choices) { // SERVER RELEVANT
     players.startPlayers();
-    players.unJudgePlayers(); //removes judging from players
+    players.unjudgePlayers(); //removes judging from players
     players.unplacePlayers();
     quiz.resetQuiz(); //resets quiz to default
     quiz.setChoices(choices); // sets choices for new question
@@ -85,6 +85,7 @@ socket.on('ask_question', function(song, askfor, choices) { // SERVER RELEVANT
     quiz.askFor(askfor); // set prompt
     quiz.showQuiz();//show the quiz
     //execute song play
+    myp5.loadsong(song); 
     timer.startTimerCallback(function() {
         console.log('nothing chosen in time :(');
         //let server know that no choice was made by sending empty string
