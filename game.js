@@ -235,6 +235,7 @@ function Room (name, io) {
             let isnew = true;
             //generate new question
             do {
+                isnew = true;
                 var qobj = gen_question();
                 for (let i = 0; i < this.used_songs.length; i++){
                     if (this.used_songs[i] == qobj.path) {
@@ -246,7 +247,12 @@ function Room (name, io) {
             this.used_songs.push(qobj.path);
 
             //set trackers
-            this.correct_answer = qobj.answer;
+            if (qobj.answer.length > 20) {
+                this.correct_answer = qobj.answer.slice(0,18)+'...';
+            } else {
+                this.correct_answer = qobj.answer;
+            }
+
             this.question_bools = qobj.bools;
             this.corrects = [false,false,false,false];
             this.answered = [false,false,false,false];
