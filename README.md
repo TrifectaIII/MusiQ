@@ -1,7 +1,7 @@
 # **MusiQ**
 
-[**PLAY THE GAME!**]()\
-[**SEE THE REPL**]()\
+[**PLAY THE GAME!**](https://musiq--trifectaiii.repl.co/)\
+[**SEE THE REPL**](https://repl.it/@TrifectaIII/MusiQ)\
 [**VIEW THE GITHUB**](https://github.com/TrifectaIII/replit-music-jam)
 
 Introducing **MusiQ**, a music quiz game you can play with your friends, or anybody else with access to a browser (desktop **AND/OR** mobile)!
