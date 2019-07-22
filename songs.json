@@ -131,7 +131,7 @@
     },
     "/static/sample/Top40_Extract/GD&TOP - KNOCK OUT-extract.mp3" : {
     	"title" : "Knock Out",
-    	"artist" : "GD&TOP",
+    	"artist" : "GD+TOP",
     	"genre" : "KPOP"
     },
     "/static/sample/Top40_Extract/Girls' Generation - Gee-extract.mp3" : {
@@ -150,7 +150,7 @@
     	"genre" : "Pop"
     },
     "/static/sample/Top40_Extract/Justin Timberlake - Suit & Tie-extract.mp3" : {
-    	"title" : "Suit & Tie",
+    	"title" : "Suit + Tie",
     	"artist" : "Justin Timberlake",
     	"genre" : "Pop"
     },
