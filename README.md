@@ -15,4 +15,4 @@ Playing the game is super easy. You can join a lobby of up to 4 players by all u
 The frontend was made with [**skeleton**](http://getskeleton.com/), [**p5.js**](https://p5js.org/), and [**progressbar.js**](https://progressbarjs.readthedocs.io/). Skeleton forms the base that the UI's CSS was built on, p5 was used to create the visualizer and handle audio playback, and progressbar was used to create the timer.
 
 ### About Us
-**MusiQ** was created by Dakota Madden-Fong (@TrifectaIII), Anthony Doan-Ha (@adoanha) and Jie Chen (@jchen26).
+**MusiQ** was created by Dakota Madden-Fong (@TrifectaIII), Anthony Doan-Ha (@adoanha) and Jie Chen (@jxchen26).
