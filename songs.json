@@ -1,222 +1,302 @@
-var songs = {
-    '/static/sample/Top40_Extract/21 Savage - Bank Account-extract.mp3' : {
+{
+	"/static/sample/Top40_Extract/2Pac - Hit Em Up-extract.mp3" : {
+		"title" : "Hit Em Up",
+		"artist" : "2Pac",
+		"genre" : "Rap"
+    },
+    "/static/sample/Top40_Extract/21 Savage - Bank Account-extract.mp3" : {
 		"title" : "Bank Account",
 		"artist" : "21 Savage",
 		"genre" : "Rap"
+	},
+	"/static/sample/Top40_Extract/A$AP Ferg - Plain Jane-extract.mp3" : {
+		"title" : "Plain Jane",
+		"artist" : "A$AP Ferg",
+		"genre" : "Rap"
     },
-    '/static/sample/Top40_Extract/Amine - Caroline-extract.mp3' : {
+    "/static/sample/Top40_Extract/A$AP Rocky - Everyday-extract.mp3" : {
+		"title" : "Everyday",
+		"artist" : "A$AP Rocky",
+		"genre" : "Rap"
+    },
+    "/static/sample/Top40_Extract/Amine - Caroline-extract.mp3" : {
 		"title" : "Caroline",
 		"artist" : "Amine",
 		"genre" : "Rap"
     },
-    '/static/sample/Top40_Extract/Astrud Gilberto & Stan Getz - The Girl From Ipanema-extract.mp3' :{
-    	"title" : "The Girl From Ipanema",
-    	"artist" : "Astrud G, Stan G",
-    	"genre" : "Jazz"
-    },
-    '/static/sample/Top40_Extract/Bach - Jesu, Joy Of Man's Desiring-extract.mp3' : {
+    "/static/sample/Top40_Extract/Bach - Jesu, Joy Of Man's Desiring-extract.mp3" : {
     	"title" : "Jesu, Joy Of Man's Desiring",
     	"artist" : "Bach",
     	"genre" : "Classical"
     },
-    '/static/sample/Top40_Extract/Beethoven - Moonlight Sonata (3rd Movement)-extract.mp3' : {
+    "/static/sample/Top40_Extract/Beethoven - Moonlight Sonata (3rd Movement)-extract.mp3" : {
     	"title" : "Moonlight Sonata (3rd Movement)",
     	"artist" : "Beethoven",
     	"genre" : "Classical"
     },
-    '/static/sample/Top40_Extract/Benny Blanco, Halsey & Khalid - Eastside-extract.mp3' : {
+    "/static/sample/Top40_Extract/Benny Blanco, Halsey & Khalid - Eastside-extract.mp3" : {
     	"title" : "Eastside",
     	"artist" : "Benny B, Halsey, Khalid",
     	"genre" : "Pop"
     },
-    '/static/sample/Top40_Extract/Billie Eilish - bad guy-extract.mp3' : {
+    "/static/sample/Top40_Extract/Beyoncé - Halo-extract.mp3" : {
+    	"title" : "Halo",
+    	"artist" : "Beyoncé",
+    	"genre" : "R&B"
+    },
+    "/static/sample/Top40_Extract/Billie Eilish - bad guy-extract.mp3" : {
     	"title" : "Bad Guy",
     	"artist" : "Billie Eilish",
     	"genre" : "Indie"
     },
-    '/static/sample/Top40_Extract/BTS - BOY WITH LUV-extract.mp3' : {
+    "/static/sample/Top40_Extract/Bombay Bicycle Club - How Can You Swallow So Much Sleep-extract.mp3" : {
+    	"title" : "How Can You Swallow So Much Sleep",
+    	"artist" : "Bombay Bicycle Club",
+    	"genre" : "Indie"
+    },
+    "/static/sample/Top40_Extract/BTS - BOY WITH LUV-extract.mp3" : {
     	"title" : "Boy With Luv",
     	"artist" : "BTS",
     	"genre" : "KPOP"
     },
-    '/static/sample/Top40_Extract/Calvin Harris - Slide-extract.mp3' : {
+    "/static/sample/Top40_Extract/Calvin Harris - Slide-extract.mp3" : {
     	"title" : "Slide",
     	"artist" : "Calvin Harris",
     	"genre" : "Pop"
     },
-    '/static/sample/Top40_Extract/Cardi B & Bruno Mars - Please Me-extract.mp3' : {
+    "/static/sample/Top40_Extract/Cardi B & Bruno Mars - Please Me-extract.mp3" : {
     	"title" : "Please Me",
     	"artist" : "Cardi B, Bruno M",
     	"genre" : "Rap"
     },
-    '/static/sample/Top40_Extract/Chance The Rapper - Cocoa Butter Kisses-extract.mp3' : {
+    "/static/sample/Top40_Extract/Chance The Rapper - Cocoa Butter Kisses-extract.mp3" : {
     	"title" : "Cocoa Butter Kisses",
     	"artist" : "Chance The Rapper",
     	"genre" : "Rap"
     },
-    '/static/sample/Top40_Extract/Childish Gambino - This Is America-extract.mp3' : {
+    "/static/sample/Top40_Extract/Childish Gambino - This Is America-extract.mp3" : {
     	"title" : "This Is America",
     	"artist" : "Childish Gambino",
     	"genre" : "Rap"
     },
-    '/static/sample/Top40_Extract/Chopin - Ballade No. 1 in G Minor-extract.mp3' : {
+    "/static/sample/Top40_Extract/Chopin - Ballade No. 1 in G Minor-extract.mp3" : {
     	"title" : "Ballade No. 1 in G Minor",
     	"artist" : "Chopin",
     	"genre" : "Classical"
     },
-    '/static/sample/Top40_Extract/Chris Brown feat. Drake - No Guidance (Clean)-extract.mp3' : {
+    "/static/sample/Top40_Extract/Chris Brown feat. Drake - No Guidance (Clean)-extract.mp3" : {
     	"title" : "No Guidance",
     	"artist" : "Chris Brown",
     	"genre" : "Rap"
     },
-    '/static/sample/Top40_Extract/CLC - Me-extract.mp3' : {
+    "/static/sample/Top40_Extract/CLC - Me-extract.mp3" : {
     	"title" : "Me",
     	"artist" : "CLC",
     	"genre" : "KPOP"
     },
-    '/static/sample/Top40_Extract/DaBaby - Suge-extract.mp3' : {
+    "/static/sample/Top40_Extract/DaBaby - Suge-extract.mp3" : {
     	"title" : " Suge",
     	"artist" : "DaBaby",
     	"genre" : "Rap"
     },
-    '/static/sample/Top40_Extract/Dan + Shay - Speechless-extract.mp3' : {
+    "/static/sample/Top40_Extract/Dan + Shay - Speechless-extract.mp3" : {
     	"title" : "Speechless",
     	"artist" : "Dan+Shay",
     	"genre" : "Country"
     },
-    '/static/sample/Top40_Extract/Donnie Trumpet & The Social Experiment- Sunday Candy-extract.mp3' : {
+    "/static/sample/Top40_Extract/Donnie Trumpet & The Social Experiment- Sunday Candy-extract.mp3" : {
     	"title" : "Sunday Candy",
     	"artist" : "Donnie Trumpet",
     	"genre" : "Rap"
     },
-    '/static/sample/Top40_Extract/Drake - God's Plan-extract.mp3' : {
+    "/static/sample/Top40_Extract/Drake - God's Plan-extract.mp3" : {
     	"title" : "God's Plan",
     	"artist" : "Drake",
     	"genre" : "Rap"
     },
-    '/static/sample/Top40_Extract/Ed Sheeran & Justin Bieber - I Don't Care-extract.mp3' : {
+    "/static/sample/Top40_Extract/Ed Sheeran & Justin Bieber - I Don't Care-extract.mp3" : {
     	"title" : "I Don't Care",
     	"artist" : "Ed S, Justin B",
     	"genre" : "Pop"
     },
-    '/static/sample/Top40_Extract/GD&TOP - KNOCK OUT-extract.mp3' : {
+    "/static/sample/Top40_Extract/Eminem - My Name Is-extract.mp3" : {
+    	"title" : "My Name Is",
+    	"artist" : "Eminem",
+    	"genre" : "Rap"
+    },
+    "/static/sample/Top40_Extract/Famous Dex - Pick It Up-extract.mp3" : {
+    	"title" : "Pick It Up",
+    	"artist" : "Famous Dex",
+    	"genre" : "Rap"
+    },
+    "/static/sample/Top40_Extract/GD&TOP - KNOCK OUT-extract.mp3" : {
     	"title" : "Knock Out",
     	"artist" : "GD&TOP",
     	"genre" : "KPOP"
     },
-    '/static/sample/Top40_Extract/Girls' Generation - Gee-extract.mp3' : {
+    "/static/sample/Top40_Extract/Girls' Generation - Gee-extract.mp3" : {
     	"title" : "Gee",
     	"artist" : "Girls' Generation",
     	"genre" : "KPOP"
     },
-    '/static/sample/Top40_Extract/Halsey - Without Me-extract.mp3' : {
+    "/static/sample/Top40_Extract/Halsey - Without Me-extract.mp3" : {
     	"title" : "Without Me",
     	"artist" : "Halsey",
     	"genre" : "Pop"
     },
-    '/static/sample/Top40_Extract/Jonas Brothers - Sucker-extract.mp3' : {
+    "/static/sample/Top40_Extract/Jonas Brothers - Sucker-extract.mp3" : {
     	"title" : "Sucker",
     	"artist" : "Jonas Brothers",
     	"genre" : "Pop"
     },
-    '/static/sample/Top40_Extract/Justin Timberlake - Suit & Tie-extract.mp3' : {
+    "/static/sample/Top40_Extract/Justin Timberlake - Suit & Tie-extract.mp3" : {
     	"title" : "Suit & Tie",
     	"artist" : "Justin Timberlake",
     	"genre" : "Pop"
     },
-    '/static/sample/Top40_Extract/Katy Perry - Never Really Over-extract.mp3' : {
+	"/static/sample/Top40_Extract/Kanye West - Ultralight Beam-extract.mp3" : {
+    	"title" : "Ultralight Beam",
+    	"artist" : "Kanye West",
+    	"genre" : "R&B"
+    },
+    "/static/sample/Top40_Extract/Katy Perry - Never Really Over-extract.mp3" : {
     	"title" : "Never Really Over",
     	"artist" : "Katy Perry",
     	"genre" : "Pop"
     },
-    '/static/sample/Top40_Extract/Keith Ape - It G Ma-extract.mp3' : {
+    "/static/sample/Top40_Extract/Keith Ape - It G Ma-extract.mp3" : {
     	"title" : "It G Ma",
     	"artist" : "Keith Ape",
     	"genre" : "Rap" 
     },
-    '/static/sample/Top40_Extract/Kendrick Lamar - HUMBLE.-extract.mp3' : {
+    "/static/sample/Top40_Extract/Kendrick Lamar - HUMBLE.-extract.mp3" : {
     	"title" : "HUMBLE.",
     	"artist" : "Kendrick Lamar",
     	"genre" : "Rap"
     },
-    '/static/sample/Top40_Extract/Khalid - Talk-extract.mp3' : {
+    "/static/sample/Top40_Extract/Khalid - Talk-extract.mp3" : {
     	"title" : "Talk",
     	"artist" : "Khalid",
     	"genre" : "R&B"
     },
-    '/static/sample/Top40_Extract/Lil Nas X - Old Town Road-extract.mp3' : {
+    "/static/sample/Top40_Extract/Lil Nas X - Old Town Road-extract.mp3" : {
     	"title" : "Old Town Road",
     	"artist" : "Lil Nas X",
     	"genre" : "Rap"
     },
-    '/static/sample/Top40_Extract/Lizzo - Truth Hurts-extract.mp3' : {
+    "/static/sample/Top40_Extract/Lizzo - Truth Hurts-extract.mp3" : {
     	"title" : "Truth Hurts",
     	"artist" : "Lizzo",
     	"genre" : "Pop"
     },
-    '/static/sample/Top40_Extract/Marshmello - Happier-extract.mp3' : {
-    	"title" : "Happier",
-    	"artist" : "Marshmello",
-    	"genre" : "EDM"
+    "/static/sample/Top40_Extract/Mac DeMarco - Salad Days-extract.mp3" : {
+    	"title" : "Salad Days",
+    	"artist" : "Mac DeMarco",
+    	"genre" : "Indie"
     },
-    '/static/sample/Top40_Extract/MGMT - Kids-extract.mp3' : {
+    "/static/sample/Top40_Extract/MF DOOM - One Beer-extract.mp3" : {
+    	"title" : "One Beer",
+    	"artist" : "MF DOOM",
+    	"genre" : "Rap"
+    },
+    "/static/sample/Top40_Extract/MGMT - Kids-extract.mp3" : {
     	"title" : "Kids",
     	"artist" : "MGMT",
     	"genre" : "Pop"
     },
-    '/static/sample/Top40_Extract/Mozart - Eine Kleine Nachtmusik, K 525 Allegro-extract.mp3' : {
+    "/static/sample/Top40_Extract/Mozart - Eine Kleine Nachtmusik, K 525 Allegro-extract.mp3" : {
     	"title" : "Eine Kleine Nachtmusik, K 525 Allegro",
     	"artist" : "Mozart",
     	"genre" : "Classical"
     },
-    '/static/sample/Top40_Extract/P!nk - Walk Me Home-extract.mp3' : {
+    "/static/sample/Top40_Extract/Neon Indian - Polish Girl-extract.mp3" : {
+    	"title" : "Polish Girl",
+    	"artist" : "Neon Indian",
+    	"genre" : "Indie"
+    },
+    "/static/sample/Top40_Extract/Ne-Yo - So Sick-extract.mp3" : {
+    	"title" : "So Sick",
+    	"artist" : "Ne-Yo - So Sick-extract",
+    	"genre" : "R&B"
+    },
+    "/static/sample/Top40_Extract/Nirvana - Smells Like Teen Spirit-extract.mp3" : {
+    	"title" : "Smells Like Teen Spirit",
+    	"artist" : "Nirvana",
+    	"genre" : "Alternative"
+    },
+    "/static/sample/Top40_Extract/P!nk - Walk Me Home-extract.mp3" : {
     	"title:" : "Walk Me Home",
     	"artist" : "P!nk",
     	"genre" : "Pop"
     },
-    '/static/sample/Top40_Extract/Panic! At The Disco - Hey Look Ma, I Made It-extract.mp3' : {
+    "/static/sample/Top40_Extract/Panic! At The Disco - Hey Look Ma, I Made It-extract.mp3" : {
     	"title" : "Hey Look Ma, I Made It",
     	"artist" : "Panic! At the Disco",
     	"genre" : "Indie"
     },
- 	'/static/sample/Top40_Extract/Phoenix - Lisztomania-extract.mp3' : {
+ 	"/static/sample/Top40_Extract/Phoenix - Lisztomania-extract.mp3" : {
  		"title" : "Lisztomania",
  		"artist" : "Phoenix",
  		"genre" : "Alternative"
  	},
- 	'/static/sample/Top40_Extract/Post Malone - Wow-extract.mp3' : {
+ 	"/static/sample/Top40_Extract/Post Malone - Wow-extract.mp3" : {
  		"title" : "Wow",
  		"artist" : "Post Malone",
  		"genre" : "Rap"
  	},
- 	'/static/sample/Top40_Extract/Psy - Gangnam Style-extract.mp3' : {
+ 	"/static/sample/Top40_Extract/Psy - Gangnam Style-extract.mp3" : {
  		"title" : "Gangnam Style",
  		"artist" : "Psy",
  		"genre" : "KPOP"
  	},
- 	'/static/sample/Top40_Extract/Sam Smith, Normani - Dancing With A Stranger-extract.mp3' : {
+ 	"/static/sample/Top40_Extract/Red Hot Chili Peppers - Under The Bridge-extract.mp3" : {
+ 		"title" : "Under The Bridge",
+ 		"artist" : "Red Hot Chili Peppers",
+ 		"genre" : "Alternative"
+ 	},
+ 	"/static/sample/Top40_Extract/Sam Smith, Normani - Dancing With A Stranger-extract.mp3" : {
  		"title" : "Dancing With A Stranger",
  		"artist" : "Sam S, Normani",
  		"genre" : "Pop"
  	},
- 	'/static/sample/Top40_Extract/Shawn Mendes - If I Can't Have You-extract.mp3' : {
+ 	"/static/sample/Top40_Extract/Shawn Mendes - If I Can't Have You-extract.mp3" : {
  		"title" : "If I Can't Have You",
  		"artist" : "Shawn Mendes",
  		"genre" : "Pop"
  	},
- 	'/static/sample/Top40_Extract/Taylor Swift - You Need To Calm Down-extract.mp3' : {
+ 	"/static/sample/Top40_Extract/Snoop Dogg - Drop It Like It's Hot-extract.mp3" : {
+ 		"title" : "Drop It Like It's Hot",
+ 		"artist" : "Snoop Dogg",
+ 		"genre" : "Rap"
+ 	},
+ 	"/static/sample/Top40_Extract/Tame Impala - The Less I Know The Better-extract.mp3" : {
+ 		"title" : "The Less I Know The Better",
+ 		"artist" : "Tame Impala",
+ 		"genre" : "Indie"
+ 	},
+ 	"/static/sample/Top40_Extract/Taylor Swift - You Need To Calm Down-extract.mp3" : {
  		"title" : "You Need To Calm Down",
  		"artist" : "Taylor Swift",
  		"genre" : "Pop"
  	},
- 	'/static/sample/Top40_Extract/The Drums - Money-extract.mp3' : {
+ 	"/static/sample/Top40_Extract/The Drums - Money-extract.mp3" : {
  		"title" : "Money",
  		"artist" : "The Drums",
  		"genre" : "Indie"
  	},
- 	'/static/sample/Top40_Extract/Two Door Cinema Club - What You Know-extract.mp3' : {
+ 	"/static/sample/Top40_Extract/The Smiths - There Is A Light That Never Goes Out-extract.mp3" : {
+ 		"title" : "There Is A Light That Never Goes Out",
+ 		"artist" : "The Smiths",
+ 		"genre" : "Indie"
+ 	},
+ 	"/static/sample/Top40_Extract/Two Door Cinema Club - What You Know-extract.mp3" : {
  		"title" : "What You Know",
  		"artist" : "Two Door Cinema Club",
  		"genre" : "Alternative"
+ 	},
+ 	"/static/sample/Top40_Extract/Usher - My Boo-extract.mp3" : {
+ 		"title" : "My Boo",
+ 		"artist" : "Usher",
+ 		"genre" : "R&B"
  	}
 }
