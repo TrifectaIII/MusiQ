@@ -173,7 +173,7 @@ function Room (name, io) {
     this.round = 1;
 
     //how many rounds there are
-    this.totalround = 5; 
+    this.totalround = 10; 
 
     //the correct answer for the current question
     this.correct_answer = undefined;
@@ -188,6 +188,8 @@ function Room (name, io) {
 
     this.question_bools = [false,false,false,false];
 
+    this.used_songs = [];
+
 
     this.resetRoom = function () {
         //reset room data
@@ -199,7 +201,10 @@ function Room (name, io) {
         this.started = false;
         this.corrects = [false,false,false,false];
         this.answered = [false,false,false,false]; 
+        this.question_active = false;
+        this.question_bools = [false,false,false,false];
         this.round = 1;
+        this.used_songs = [];
     };
 
     //checks if room is empty
@@ -227,8 +232,18 @@ function Room (name, io) {
     this.sendQuestion = function () {
         if (!this.question_active) {
             
+            let isnew = true;
             //generate new question
-            var qobj = gen_question();
+            do {
+                var qobj = gen_question();
+                for (let i = 0; i < this.used_songs.length; i++){
+                    if (this.used_songs[i] == qobj.path) {
+                        isnew = false;
+                    };
+                };
+            } while (!isnew);
+
+            this.used_songs.push(qobj.path);
 
             //set trackers
             this.correct_answer = qobj.answer;
