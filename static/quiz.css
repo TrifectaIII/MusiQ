@@ -11,7 +11,7 @@
 }
 
 .quiz-prompt {
-    font-size:xx-large;
+    font-size:x-large;
 }
 
 .quiz-buttons {
@@ -59,7 +59,7 @@
 .quiz-button.button-primary:focus {
     width:80%;
     padding:4px 0px;
-    font-size:x-large;
+    font-size:smaller;
     -webkit-transition: all 0.7s ease-out;
     -moz-transition: all 0.7s ease-out;
     -o-transition: all 0.7s ease-out;
@@ -72,7 +72,7 @@
     color:#222;
     background-color: #33C3F0;
     border-color: #33C3F0;
-    height:auto;
+    height:4.4rem;
     line-height:normal;
     z-index: 1;
 }
@@ -81,6 +81,7 @@
     .quiz-button.button-primary,
     .quiz-button.button-primary:focus {
         width:60%;
+        font-size:larger;
     }
 }
 

@@ -14,6 +14,8 @@ var altTitles = [];
 var altArtists = [];
 var indieTitles = [];
 var indieArtists = [];
+var classicTitles = [];
+var classicArtists = [];
 
 // Appends songs from songs.json to their appropriate genre
 for (var key in jsonContent){
@@ -35,6 +37,9 @@ for (var key in jsonContent){
     } else if (jsonContent[key]["genre"] == "Indie"){
     indieTitles.push(jsonContent[key]["title"]);
     indieArtists.push(jsonContent[key]["artist"]);
+    } else if (jsonContent[key]["genre"] == "Classical"){
+    classicTitles.push(jsonContent[key]["title"]);
+    classicArtists.push(jsonContent[key]["artist"]);
     };
 };
 
@@ -42,34 +47,37 @@ for (var key in jsonContent){
 function gen_question (){
     var songPath = Object.keys(jsonContent)[Math.floor(Math.random()*Object.keys(jsonContent).length)];
     var category = Object.keys(jsonContent[songPath])[Math.floor(Math.random()*2)];
-    var genre = jsonContent[songPath]["genre"]
-    var answer = jsonContent[songPath][category]
+    var genre = jsonContent[songPath]["genre"];
+    genre = 'Classical';
+    var answer = jsonContent[songPath][category];
     var choices = [];
     var rand_spot = Math.floor(Math.random()*4);
     var booleans = [false, false, false, false];
 
     if (category == "title"){
-    var question = "song";  
+        var question = "song";  
     } else if (category == "artist"){
-    var question = "artist";
+        var question = "artist";
+    } else {
+        var question = 'ERROR';
     };
 
     
     // Inserts answer choices into a list based on genre
     var insert = function (list){
-    while (choices.length < 4){     
-        var choice = list[Math.floor(Math.random()*list.length)]
-        if (choices.indexOf(choice) === -1 && choice != undefined){
-        console.log(choice);
-        choices.push(choice);
+        while (choices.length < 4){     
+            var choice = list[Math.floor(Math.random()*list.length)]
+            if (choices.indexOf(choice) === -1 && choice != undefined){
+            // console.log(choice);
+            choices.push(choice);
+            };
         };
-    };
-    if (choices.indexOf(answer) === -1){
-        choices[rand_spot] = answer;
-        booleans[rand_spot] = true;
-    } else{
-        booleans[choices.indexOf(answer)] = true;
-    };
+        if (choices.indexOf(answer) === -1){
+            choices[rand_spot] = answer;
+            booleans[rand_spot] = true;
+        } else {
+            booleans[choices.indexOf(answer)] = true;
+        };
     };
     
     
@@ -115,7 +123,14 @@ function gen_question (){
         } else {
         insert(indieArtists);
         };
-        break
+        break;
+    case "Classical":
+        if (category == "title"){
+        insert(classicTitles);
+        } else {
+        insert(classicArtists);
+        };
+        break;
     default:
         console.log("Could not generate choices");
     };
@@ -154,27 +169,38 @@ function Room (name, io) {
     //tracks who has already answered
     this.answered = [false,false,false,false]; 
 
-    //dict with song info
-    this.selections = {
-        "/static/sample/sample5.mp3": {
-            "artist": "Rando Person",
-            "name": "g minor"
-        } 
-        , 
-        "/static/sample/megalo.mp3": {
-            "artist": "Megalo box",
-            "name":"Sachio"
-        }
-    };
-
+    //round tracker
     this.round = 1;
 
+    //how many rounds there are
     this.totalround = 5; 
 
-    this.correct_answer = "g-minor" ;
+    //the correct answer for the current question
+    this.correct_answer = undefined;
 
     this.choice_timer;
 
+    this.judge_timer;
+
+    this.reset_timer;
+
+    this.question_active = false;
+
+    this.question_bools = [false,false,false,false];
+
+
+    this.resetRoom = function () {
+        //reset room data
+        clearTimeout(this.reset_timer);
+        clearTimeout(this.judge_timer);
+        clearTimeout(this.choice_timer);
+        this.question_active = false;
+        this.scores = [0,0,0,0];
+        this.started = false;
+        this.corrects = [false,false,false,false];
+        this.answered = [false,false,false,false]; 
+        this.round = 1;
+    };
 
     //checks if room is empty
     this.isEmpty = function () {
@@ -199,60 +225,56 @@ function Room (name, io) {
 
     //send new question to all players in room
     this.sendQuestion = function () {
-        //generate new question
-        var song = "/static/sample/sample5.mp3";
-        var question = "artist"; // artist, composer,song
-        var choices = ["1","g-minor","3","4"];
+        if (!this.question_active) {
+            
+            //generate new question
+            var qobj = gen_question();
 
+            //set trackers
+            this.correct_answer = qobj.answer;
+            this.question_bools = qobj.bools;
+            this.corrects = [false,false,false,false];
+            this.answered = [false,false,false,false];
+            this.question_active = true;
 
-        //this.correct_answer = 'snsd';
+            //emit message
+            this.io.sockets.in(this.name).emit('ask_question', qobj.path, qobj.question, qobj.choices);
+            this.update();
 
-        //reset trackers
-        this.corrects = [false,false,false,false];
-        this.answered = [false,false,false,false];
-
-        //emit message
-        this.io.sockets.in(this.name).emit('ask_question', song, question,choices);
-        this.update();
-
-        var thisRoom = this;
-
-        //faallback timer in case of disconnects / new connects
-        this.choice_timer = setTimeout(function () {
-            thisRoom.answered = [true,true,true,true];
-            thisRoom.sendJudge();
-        }, 1000*21);//time in MS after which server will force judging
+            var thisRoom = this;
+            //fallback timer in case of disconnects / new connects
+            this.choice_timer = setTimeout(function () {
+                thisRoom.sendJudge();
+            }, 1000*21);//time in MS after which server will force judging
+        };
     };
 
     //judges choices and players
     this.sendJudge = function () {
-        clearTimeout(this.choice_timer);
+        if (this.question_active) {
+            clearTimeout(this.choice_timer);
+            this.question_active = false;
 
-        var choices_correct = [false,true,false,false];
-        this.io.sockets.in(this.name).emit('judge',choices_correct,this.corrects);
-        this.update();
+            this.io.sockets.in(this.name).emit('judge',this.question_bools,this.corrects);
+            this.update();
 
-        //after judging, wait a bit then send next question
-        if (this.round == this.totalround){
-            var thisRoom = this;
-            setTimeout(function () {
-                thisRoom.io.sockets.in(thisRoom.name).emit('restart_game', thisRoom.scores);
+            //after judging, wait a bit then send next question or finish game
+            if (this.round == this.totalround){
+                var thisRoom = this;
+                this.reset_timer = setTimeout(function () {
+                    thisRoom.io.sockets.in(thisRoom.name).emit('restart_game', thisRoom.scores);
 
-                //reset room data
-                thisRoom.scores = [0,0,0,0];
-                thisRoom.started = false;
-                thisRoom.corrects = [false,false,false,false];
-                thisRoom.answered = [false,false,false,false]; 
-                thisRoom.round = 1;
-            },1000 * 3);
-        }else{
-            this.round +=1;
-            var thisRoom = this;
-	        setTimeout(function () {
-	            thisRoom.sendQuestion();
-	        }, 1000 * 3);//time in MS to wait until next question
-	    }
-
+                    //reset room data
+                    thisRoom.resetRoom();
+                },1000 * 3);
+            }else{
+                this.round +=1;
+                var thisRoom = this;
+                this.judge_timer = setTimeout(function () {
+                    thisRoom.sendQuestion();
+                }, 1000 * 3);//time in MS to wait until next question
+            }
+        };
     };
 
     //updates all player info and scores
@@ -308,6 +330,16 @@ function Room (name, io) {
                 thisRoom.scores[spot] = 0;
                 thisRoom.sockets[spot] = undefined;
                 thisRoom.update(); //update when somebody disconnects
+                if (thisRoom.question_active) {
+                    thisRoom.answered[spot] = true;
+                    if (thisRoom.check_answered()){
+                        thisRoom.sendJudge();
+                    };
+                };
+                if (thisRoom.isEmpty()) {
+                    //reset room data
+                    thisRoom.resetRoom();
+                };
             });
 
             //sets name of player
@@ -327,7 +359,7 @@ function Room (name, io) {
 
             //when client sends back their choice
             socket.on('choice',function(choice){
-                if (!(thisRoom.answered[spot])){
+                if ((!(thisRoom.answered[spot]))&&(thisRoom.question_active)){
                     //check if this socket got it correct
                     if (choice == thisRoom.correct_answer){
                         //give points

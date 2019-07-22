@@ -58,7 +58,6 @@ socket.on('game_started', function () {
     players.resetAnswered(); //resets all answered
     quiz.resetQuiz(); //resets quiz to default
     socket.emit('choice','');//picks nothing in started late
-    alert('You are joining an in-progress game!');
 });
 
 // updates player info (requires namelist and scorelist)
@@ -98,6 +97,9 @@ var chosen = true;
 
 // starts a new question (requires list of choices, song, and what to prompt user for)
 socket.on('ask_question', function(song, askfor, choices) { // SERVER RELEVANT
+    try {
+        myp5.song.stop();
+    } catch(error) {};
     players.startPlayers();
     players.unjudgePlayers(); //removes judging from players
     players.unplacePlayers(); //removes placing

@@ -37,7 +37,11 @@ quiz.askFor = function (askfor) {
 //takes list of choice strings and displays on buttons
 quiz.setChoices = function (choice_list) {
     for (let i = 0; i <quiz.buttons.length; i++) {
-        quiz.buttons[i].innerHTML = choice_list[i];
+        if (choice_list[i].length > 20) {
+            quiz.buttons[i].innerHTML = choice_list[i].slice(0,18)+'...';
+        } else {
+            quiz.buttons[i].innerHTML = choice_list[i];
+        };
     };
 };
 
