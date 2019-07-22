@@ -240,9 +240,9 @@ class visualizer{
         this.beat = true;
         this.array = [];
         myp5.pointer = 0; 
-        for( let i = 0; i < 50; i ++){
+        for( let i = 0; i < 25; i ++){
         	this.array.push(t);
-        	t += 5;
+        	t += 100;
         }
 
     }
