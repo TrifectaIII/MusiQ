@@ -44,7 +44,7 @@ var sketch = function(p){
     
 
     p.fadeout = function(){
-    	cancelTimeout(p.fadetimer);
+    	clearTimeout(p.fadetimer);
         p.song.setVolume(1);
         p.song.setVolume(0,3);
         p.song.stop(3);

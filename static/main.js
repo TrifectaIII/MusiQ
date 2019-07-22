@@ -99,6 +99,7 @@ var chosen = true;
 socket.on('ask_question', function(song, askfor, choices) { // SERVER RELEVANT
     try {
         myp5.song.stop();
+        clearTimeout(myp5.fadetimer);
     } catch(error) {};
     players.startPlayers();
     players.unjudgePlayers(); //removes judging from players

@@ -48,7 +48,7 @@ function gen_question (){
     var songPath = Object.keys(jsonContent)[Math.floor(Math.random()*Object.keys(jsonContent).length)];
     var category = Object.keys(jsonContent[songPath])[Math.floor(Math.random()*2)];
     var genre = jsonContent[songPath]["genre"];
-    genre = 'Classical';
+    // genre = 'Classical'; //testing
     var answer = jsonContent[songPath][category];
     var choices = [];
     var rand_spot = Math.floor(Math.random()*4);
