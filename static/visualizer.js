@@ -6,6 +6,8 @@ var sketch = function(p){
     p.viz;
     p.cnv;
 
+
+
       
     p.whileloading = function(completion){
         // draws a loading circle
@@ -53,6 +55,7 @@ var sketch = function(p){
         // puts canvas element in the background 
         p.cnv.style('z-index','-1');
         p.cnv.style('position','fixed');
+        p.colorMode(myp5.RGB);
         
         p.amp = new p5.Amplitude;
         p.amp.setInput(p.song);
@@ -70,12 +73,22 @@ var sketch = function(p){
         p.background(45);
         p.viz.render();
 
+
+        // get amplitude
+        var level = p.amp.getLevel();
+
+        var size = level*500;
+        // p.viz.updatecirclesize(level);
+        // p.viz.beatdetect(level);
+        // p.rotateX(-myp5.PI/3); // undo rotation 
+
         //circle
         p.translate(p.viz.x_offset*-1, p.viz.y_offset*-1);
-        p.rotateX(-myp5.PI/3);
         p.strokeWeight(10);
         p.stroke (255);
-        p.arc(0,0,500,500, 0, 2*myp5.PI,myp5.OPEN,50);     
+
+        // p.smooth();
+        p.arc(0,0,size,size, 0, 2*myp5.PI,myp5.OPEN,50);     
     }
     
     p.windowResized= function(){
@@ -102,19 +115,21 @@ class visualizer{
         this.hold = 30; 
         this.threshold = 0.12;
         this.cutoff = 0;
-        this.decay = .98;
+        this.decay = .9;
         this.lastframe = 0; 
 
+        this.d = 100;
 
+        // turn on or off visualizer
         this.on = true;
-        
+        this.counter = 0;
     }
     
     //draw function
     render(){
         
-        
         if (this.on){
+        	myp5.frameRate(30);
 
     //        //fly backward
     //        this.z_value.shift(); //remove array or row from the front
@@ -125,28 +140,37 @@ class visualizer{
             this.z_value.unshift(this.avg_spectrum());
 
             myp5.noFill();
-            myp5.strokeWeight(7);
+            myp5.strokeWeight(2);
             myp5.rotateX(myp5.PI/3);
             myp5.translate(this.x_offset,this.y_offset); // offset by a certain amount (manual offset might be faster)
             
 
-           // myp5.frameRate(30);
-
-
+          
             for (let y = 0; y<this.rows-1 ; y++){ // rows-1 with triangle strpip
                 
-                myp5.beginShape(myp5.POINTS);
+                myp5.beginShape(myp5.LINES);
                 for ( let x = 0; x<this.columes ; x++){  
-                    myp5.stroke(this.get_color(this.z_value[y][x]));
+                	
+
+                	myp5.colorMode(myp5.HSB,100);
+
+                	if (this.z_value[y][x]==0){	
+                    	myp5.stroke(0,0,60);
+
+                    }else{
+                    	myp5.stroke(myp5.map(this.z_value[y][x],0,300,100,1),60,95);
+                    }
 
                     myp5.vertex(x*this.scale, y*this.scale, this.z_value[y][x]);
 
-    //                vertex(x*this.scale, (y+1)*this.scale, this.z_value[y+1][x]);
+                   myp5.vertex(x*this.scale, (y+1)*this.scale, this.z_value[y+1][x]);
                 }
                 
                 myp5.endShape();
 
             }
+
+            myp5.colorMode(myp5.RGB,255);
         }
 
     }
@@ -164,64 +188,46 @@ class visualizer{
 
     }   
 
+    /* Source for algorithm*/
     beatdetect(level){
-        
         // amp level has to be bigger than cutoff but less than threshold
         if ((level > this.cutoff) && (level>this.threshold)){
             
             //if beat is detect run onbeat function
-            this.onBeat()
+            this.onbeat(level);
+
+            // increase amplitude cutoff
+            this.cutoff = level *1.15;
+            this.lastframe = 0; 
+        }else{
+        	if (this.lastframe <= this.hold){
+        		this.lastframe++;
+        	}
+        	else{
+        		this.cutoff *= this.decay; // lower cutoff by 10%
+        		this.cutoff = Math.max(this.cutoff, this.threshold); // new cutoff
+        	}
         }
     }
     
-    onbeat(){
-        
-    }
+    // onbeat(level){
+    //     // runs when beat is detected
+    //     console.log("THERE IS A BEAT");
+
+    //     this.d += level *  ;
+
+    // }
+
+    // updatecirclesize(level){
+    // 	if (this.d > 100){
+    // 		this.d -= myp5.map(level,0,1,100,300);
+    // 	}
+    // }
     
     // helper function 
     get_color(z){
         
-        if (z >= 200){
-            return "#f6efef"; // white 
-        }
-
-
-        if (z >= 180){
-
-            return "#d93030"; // red 
-        }
-
-        if(z>= 160){
-            return  "#d65e27"; //orange
-        }
-
-        if(z >= 140){
-            return "#e7eb2d"; //yellow 
-        }
-
-        if (z >= 120){
-            return "#a5eb2d"; // greenish
-        }
-
-        if(z >= 100){
-            return "#30eb2d"; //deeper green
-
-        }
-
-        if(z >= 80){
-            return "#2debd5"; // sky blue 
-        }
-
-        if (z >= 60){
-            return "#2d79eb"; // dark blue 
-        }
-
-        if (z >= 40){
-            return "432deb"; // dark purle blue
-        }else{
-            return "#4c4b52"; //grey
-        }
-
+ 		return 
     }
     
 }//end Visuzlizer
