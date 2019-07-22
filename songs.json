@@ -225,7 +225,7 @@
     	"genre" : "Alternative"
     },
     "/static/sample/Top40_Extract/P!nk - Walk Me Home-extract.mp3" : {
-    	"title:" : "Walk Me Home",
+    	"title" : "Walk Me Home",
     	"artist" : "P!nk",
     	"genre" : "Pop"
     },
