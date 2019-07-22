@@ -1,3 +1,135 @@
+var fs = require("fs");
+var content = fs.readFileSync("songs.json");
+var jsonContent = JSON.parse(content);
+
+var rapTitles = [];
+var rapArtists = [];
+var popTitles = [];
+var popArtists = [];
+var rbTitles = [];
+var rbArtists = []
+var kpopTitles = [];
+var kpopArtists = [];
+var altTitles = [];
+var altArtists = [];
+var indieTitles = [];
+var indieArtists = [];
+
+// Appends songs from songs.json to their appropriate genre
+for (var key in jsonContent){
+    if (jsonContent[key]["genre"] == "Rap"){
+    rapTitles.push(jsonContent[key]["title"]); 
+    rapArtists.push(jsonContent[key]["artist"]);
+    } else if (jsonContent[key]["genre"] == "Pop"){
+    popTitles.push(jsonContent[key]["title"]); 
+    popArtists.push(jsonContent[key]["artist"]);
+    } else if (jsonContent[key]["genre"] == "R&B"){
+    rbTitles.push(jsonContent[key]["title"]);
+    rbArtists.push(jsonContent[key]["artist"]);
+    } else if (jsonContent[key]["genre"] == "KPOP"){
+    kpopTitles.push(jsonContent[key]["title"]);
+    kpopArtists.push(jsonContent[key]["artist"]);
+    } else if (jsonContent[key]["genre"] == "Alternative"){
+    altTitles.push(jsonContent[key]["title"]);
+    altArtists.push(jsonContent[key]["artist"]);
+    } else if (jsonContent[key]["genre"] == "Indie"){
+    indieTitles.push(jsonContent[key]["title"]);
+    indieArtists.push(jsonContent[key]["artist"]);
+    };
+};
+
+
+function gen_question (){
+    var songPath = Object.keys(jsonContent)[Math.floor(Math.random()*Object.keys(jsonContent).length)];
+    var category = Object.keys(jsonContent[songPath])[Math.floor(Math.random()*2)];
+    var genre = jsonContent[songPath]["genre"]
+    var answer = jsonContent[songPath][category]
+    var choices = [];
+    var rand_spot = Math.floor(Math.random()*4);
+    var booleans = [false, false, false, false];
+
+    if (category == "title"){
+    var question = "song";  
+    } else if (category == "artist"){
+    var question = "artist";
+    };
+
+    
+    // Inserts answer choices into a list based on genre
+    var insert = function (list){
+    while (choices.length < 4){     
+        var choice = list[Math.floor(Math.random()*list.length)]
+        if (choices.indexOf(choice) === -1 && choice != undefined){
+        console.log(choice);
+        choices.push(choice);
+        };
+    };
+    if (choices.indexOf(answer) === -1){
+        choices[rand_spot] = answer;
+        booleans[rand_spot] = true;
+    } else{
+        booleans[choices.indexOf(answer)] = true;
+    };
+    };
+    
+    
+    switch(genre){
+    case "Rap":
+        if (category == "title"){
+        insert(rapTitles);
+        } else {
+        insert(rapArtists);
+        };
+        break;
+    case "Pop":
+        if (category == "title"){
+        insert(popTitles);
+        } else{
+        insert(popArtists);
+        };
+        break;
+    case "R&B":
+        if (category == "title"){
+        insert(rbTitles);
+        } else {
+        insert(rbArtists);
+        };
+        break;
+    case "KPOP":
+        if (category == "title"){
+        insert(kpopTitles);
+        } else {
+        insert(kpopArtists);
+        };
+        break;
+    case "Alternative":
+        if (category == "title"){
+        insert(altTitles);
+        } else {
+        insert(altArtists);
+        };
+        break;
+    case "Indie":
+        if (category == "title"){
+        insert(indieTitles);
+        } else {
+        insert(indieArtists);
+        };
+        break
+    default:
+        console.log("Could not generate choices");
+    };
+
+    var obj = {};
+    obj.path = songPath;
+    obj.question = question;
+    obj.choices = choices;
+    obj.answer = answer;
+    obj.bools = booleans;
+
+    return obj;
+};
+
 function Room (name, io) {
     this.io = io;
 
