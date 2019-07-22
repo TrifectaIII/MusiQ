@@ -5,10 +5,10 @@ var sketch = function(p){
     p.fft; 
     p.viz;
     p.cnv;
+    p.pointer;
 
+    p.fadetimer;
 
-
-      
     p.whileloading = function(completion){
         // draws a loading circle
         // console.log("loading");
@@ -22,7 +22,11 @@ var sketch = function(p){
         p.song.playMode('restart'); //dont need stop 
 
         p.song.play(); // does not work on chrome 
-        p.fadein();
+        p.fadetimer = setTimeout(function(){
+        	p.song.setVolume(1);
+        	p.song.setVolume(0,3);
+        	p.song.stop(3);}, 12000);
+        // p.fadein();
     }
     
     p.load_fail = function(){
@@ -35,17 +39,15 @@ var sketch = function(p){
     
     p.stopsong = function(){
         p.fadeout();
+        
     }
     
-    
-    p.fadein = function(){
-        p.song.setVolume(1); 
-        // p.song.setVolume(1, 3); // fade volume to 0.7 in 2 secs
-    }
-    
+
     p.fadeout = function(){
+    	cancelTimeout(p.fadetimer);
         p.song.setVolume(1);
         p.song.setVolume(0,3);
+        p.song.stop(3);
     }
     
     
@@ -56,6 +58,7 @@ var sketch = function(p){
         p.cnv.style('z-index','-1');
         p.cnv.style('position','fixed');
         p.colorMode(myp5.RGB);
+        p.pointer = 0;
         
         p.amp = new p5.Amplitude;
         p.amp.setInput(p.song);
@@ -64,6 +67,7 @@ var sketch = function(p){
         p.fft = new p5.FFT(.5, 1024); //(smoothing, bit range)
 
         p.viz = new visualizer(); // cant use Vi
+        p.fill=0;
     
     }
     
@@ -77,10 +81,17 @@ var sketch = function(p){
         // get amplitude
         var level = p.amp.getLevel();
 
-        var size = level*500;
+        
         // p.viz.updatecirclesize(level);
-        // p.viz.beatdetect(level);
-        // p.rotateX(-myp5.PI/3); // undo rotation 
+       
+        var size = level*1080;
+        if (size <= 200){
+        	size = 200;
+        }
+
+        p.viz.beatdetect(level,size);
+
+        // p.rotateX(-myp5.PI/3); // undo rotation before drawing circle
 
         //circle
         p.translate(p.viz.x_offset*-1, p.viz.y_offset*-1);
@@ -88,12 +99,22 @@ var sketch = function(p){
         p.stroke (255);
 
         // p.smooth();
-        p.arc(0,0,size,size, 0, 2*myp5.PI,myp5.OPEN,50);     
-    }
+        p.arc(0,0,size,size, 0, 2*myp5.PI,myp5.OPEN,50); 
+
+
+        if (p.viz.beat){
+        	p.pointer += 1;
+        		p.arc(0,0,p.viz.array[p.pointer],p.viz.array[p.pointer],0,2*myp5.PI,myp5.OPEN,50);
+
+        	}
+
+    }    
+    
     
     p.windowResized= function(){
         p.resizeCanvas(p.windowWidth,p.windowHeight);
-    }
+    
+	}
 }
 
 var myp5 = new p5(sketch);
@@ -123,6 +144,8 @@ class visualizer{
         // turn on or off visualizer
         this.on = true;
         this.counter = 0;
+        this.beat = false;
+        this.array = [];
     }
     
     //draw function
@@ -189,12 +212,12 @@ class visualizer{
     }   
 
     /* Source for algorithm*/
-    beatdetect(level){
+    beatdetect(level,size){
         // amp level has to be bigger than cutoff but less than threshold
         if ((level > this.cutoff) && (level>this.threshold)){
             
             //if beat is detect run onbeat function
-            this.onbeat(level);
+            this.onbeat(size);
 
             // increase amplitude cutoff
             this.cutoff = level *1.15;
@@ -210,25 +233,22 @@ class visualizer{
         }
     }
     
-    // onbeat(level){
-    //     // runs when beat is detected
-    //     console.log("THERE IS A BEAT");
+    onbeat(size){
+        // runs when beat is detected
+        console.log("THERE IS A BEAT");
+        var t = size
+        this.beat = true;
+        this.array = [];
+        myp5.pointer = 0; 
+        for( let i = 0; i < 50; i ++){
+        	this.array.push(t);
+        	t += 5;
+        }
 
-    //     this.d += level *  ;
-
-    // }
-
-    // updatecirclesize(level){
-    // 	if (this.d > 100){
-    // 		this.d -= myp5.map(level,0,1,100,300);
-    // 	}
-    // }
-    
-    // helper function 
-    get_color(z){
-        
- 		return 
     }
+
+
+
     
 }//end Visuzlizer
 
