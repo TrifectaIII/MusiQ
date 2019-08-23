@@ -1,8 +1,8 @@
 # **MusiQ**
 
-[**PLAY THE GAME!**](https://musiq--trifectaiii.repl.co/)\
-[**SEE THE REPL**](https://repl.it/@TrifectaIII/MusiQ)\
-[**VIEW THE GITHUB**](https://github.com/TrifectaIII/replit-music-jam)
+[**PLAY THE GAME!**](https://musiq--trifectaiii.repl.co/)
+
+*Note: Currently only tested on chrome for desktop/android, other browsers/devices may play the sound clips properly.*
 
 Introducing **MusiQ**, a music quiz game you can play with your friends, or anybody else with access to a browser (desktop **AND/OR** mobile)!
 
@@ -16,3 +16,6 @@ The frontend was made with [**skeleton**](http://getskeleton.com/), [**p5.js**](
 
 ### About Us
 **MusiQ** was created by Dakota Madden-Fong (@TrifectaIII), Anthony Doan-Ha (@adoanha) and Jie Chen (@jxchen26).
+
+#### Disclaimer
+We do not own any of the music samples used, and they are the property of their respective creators who are not affiliated with this project. 
