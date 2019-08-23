@@ -17,5 +17,5 @@ The frontend was made with [**skeleton**](http://getskeleton.com/), [**p5.js**](
 ### About Us
 **MusiQ** was created by Dakota Madden-Fong (@TrifectaIII), Anthony Doan-Ha (@adoanha) and Jie Chen (@jxchen26).
 
-#### Disclaimer
+### Disclaimer
 We do not own any of the music samples used, and they are the property of their respective creators who are not affiliated with this project. 
